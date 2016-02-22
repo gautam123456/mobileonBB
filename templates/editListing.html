@@ -1,0 +1,1867 @@
+<!-- PhotoSessionID -->
+<div class="wrapper clearfix">
+<div class="col-md-8">
+    <h3></h3>
+
+    <input type="hidden" name="sdata" <%if(data!=undefined) {%> value="<%= data.id %>-<%= data.guid %>-<%= data.version %>" <%}%>>
+    <form class="company-form">
+        <div class="form-group">
+            <label>Name of the business*</label><input class="form-control" type="text" name="name" <%if(data!=undefined) {%> value="<%= data.storename %>" <%}%>>
+        </div>
+       <div class="form-group">
+            <label>Email*</label>
+            <input class="form-control" type="email"  name="email" <%if(data!=undefined) {%>value="<%= data.email %>"<%}%>>
+        </div>
+
+        <div class="form-group">
+            <label>Phone*</label>
+            <input class="form-control" type="tel"  name="phone" <%if(data!=undefined) {%>value="<%= data.phone %>"<%}%>>
+        </div>
+
+        <div class="form-group">
+            <label>Address*</label>
+            <input class="form-control" type="text"  name="address" <%if(data!=undefined) {%> value="<%= data.address %>"<%}%>>
+        </div>
+
+        <div class="form-group">
+            <label>Co-ordinate*</label>
+            <input class="form-control" type="text"  name="coordinate" <%if(data!=undefined) {%> value="<%= data.coordinate %>"<%}%>>
+        </div>
+
+        <div class="form-group hidden bl">
+            <label>Block Location*</label>
+            <div class="bl-labels"></div>
+            <input class="form-control" type="text" name="block-location" >
+            <div class="list-group bl-suggestion">
+                <!-- <div class="list-group-item">A</div> -->
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label><small>Drag and drop marker to establishment location*</small></label>
+            <div id="googleMap" style="width:100%; height:300px" <%if(data!=undefined) {%>data-coordinate="<%= data.coordinate %>"><%}%></div>
+</div>
+<!-- <div class="form-group">
+<label>Landmark*</label>
+<input class="form-control" type="text"  name="landmark">
+</div>
+
+<div class="form-group">
+<label class="col-md-6">City* <input class="form-control" type="text"  name="city"></label>
+<label class="col-md-6 pincode">Pincode* <input class="form-control" type="number" maxlength="6"  name="pincode"></label>
+</div> -->
+
+<div class="hoo">
+<div class="form-group">
+
+<label>Hours of operation*</label>
+<br>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="mondayTiming">Mon</div>
+    </div>
+    <div class="form-group">
+        <%console.log("Monday :" +data.mondayTiming +" Split it" + data.mondayTiming.split('-')[0])%>
+        <label>FROM</label>
+        <select class="form-control time mondaytimingfrom" name="mondayTimingfrom" >
+            <option value="<%=data.mondayTiming.split('-')[0]%>" selected><%=data.mondayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time mondaytimingto" name="mondayTimingto" >
+            <option value="<%=data.mondayTiming.split('-')[1]%>" selected><%=data.mondayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="tuesdayTiming">Tue</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="tuesdayTimingfrom" >
+            <option value="<%=data.tuesdayTiming.split('-')[0]%>" selected><%=data.tuesdayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="tuesdayTimingto" >
+            <option value="<%=data.tuesdayTiming.split('-')[1]%>" selected><%=data.tuesdayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="wednesdayTiming">Wed</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="wednesdayTimingfrom" >
+            <option value="<%=data.wednesdayTiming.split('-')[0]%>" selected><%=data.wednesdayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="wednesdayTimingto" >
+            <option value="<%=data.wednesdayTiming.split('-')[1]%>" selected><%=data.wednesdayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="thursdayTiming">Thu</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="thursdayTimingfrom" >
+            <option value="<%=data.thursdayTiming.split('-')[0]%>" selected><%=data.thursdayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="thursdayTimingto" >
+            <option value="<%=data.thursdayTiming.split('-')[1]%>" selected><%=data.thursdayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="fridayTiming">Fri</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="fridayTimingfrom" >
+            <option value="<%=data.fridayTiming.split('-')[0]%>" selected><%=data.fridayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="fridayTimingto" >
+            <option value="<%=data.fridayTiming.split('-')[1]%>" selected><%=data.fridayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="saturdayTiming">Sat</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="saturdayTimingfrom" >
+            <option value="<%=data.saturdayTiming.split('-')[0]%>" selected><%=data.saturdayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="saturdayTimingto" >
+            <option value="<%=data.saturdayTiming.split('-')[1]%>" selected><%=data.saturdayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <div class="btn btn-default  checkbox-btn"><input type="hidden" name="daybutton" value="sundayTiming">Sun</div>
+    </div>
+    <div class="form-group">
+        <label>FROM</label>
+        <select class="form-control time" name="sundayTimingfrom" >
+            <option value="<%=data.sundayTiming.split('-')[0]%>" selected><%=data.sundayTiming.split('-')[0]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TO</label>
+        <select class="form-control time" name="sundayTimingto" >
+            <option value="<%=data.sundayTiming.split('-')[1]%>" selected><%=data.sundayTiming.split('-')[1]%>
+            <option value="1200am">12:00am</option>
+            <option value="1230am">12:30am</option>
+            <option value="0100am">1:00am</option>
+            <option value="0130am">1:30am</option>
+            <option value="0200am">2:00am</option>
+            <option value="0230am">2:30am</option>
+            <option value="0300am">3:00am</option>
+            <option value="0330am">3:30am</option>
+            <option value="0400am">4:00am</option>
+            <option value="0430am">4:30am</option>
+            <option value="0500am">5:00am</option>
+            <option value="0530am">5:30am</option>
+            <option value="0600am">6:00am</option>
+            <option value="0630am">6:30am</option>
+            <option value="0700am">7:00am</option>
+            <option value="0730am">7:30am</option>
+            <option value="0800am">8:00am</option>
+            <option value="0830am">8:30am</option>
+            <option value="0900am">9:00am</option>
+            <option value="0930am">9:30am</option>
+            <option value="1000am">10:00am</option>
+            <option value="1030am">10:30am</option>
+            <option value="1100am">11:00am</option>
+            <option value="1130am">11:30am</option>
+            <option value="1200pm">12:00pm</option>
+            <option value="1230pm">12:30pm</option>
+            <option value="0100pm">1:00pm</option>
+            <option value="0130pm">1:30pm</option>
+            <option value="0200pm">2:00pm</option>
+            <option value="0230pm">2:30pm</option>
+            <option value="0300pm">3:00pm</option>
+            <option value="0330pm">3:30pm</option>
+            <option value="0400pm">4:00pm</option>
+            <option value="0430pm">4:30pm</option>
+            <option value="0500pm">5:00pm</option>
+            <option value="0530pm">5:30pm</option>
+            <option value="0600pm">6:00pm</option>
+            <option value="0630pm">6:30pm</option>
+            <option value="0700pm">7:00pm</option>
+            <option value="0730pm">7:30pm</option>
+            <option value="0800pm">8:00pm</option>
+            <option value="0830pm">8:30pm</option>
+            <option value="0900pm">9:00pm</option>
+            <option value="0930pm">9:30pm</option>
+            <option value="1000pm">10:00pm</option>
+            <option value="1030pm">10:30pm</option>
+            <option value="1100pm">11:00pm</option>
+            <option value="1130pm">11:30pm</option>
+            <option value="OFF">OFF</option>
+            <option value="24 Hours" id="24hrd" hidden>24 Hours</option>
+        </select>
+    </div>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <!--label><input  type="checkbox" id="sa" >Select All</label-->
+        <span class="text-danger" id="time-validation"></span>
+        <!-- <div id="time-list"></div> -->
+    </div>
+</div>
+
+</div>
+
+</div>
+<div class="form-group clearfix">
+    <label>Establishment Type*</label>
+    <br>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="1">Spa<input type="hidden" name="et" value="sp" data-id="1"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="2">Salon<input type="hidden" name="et" value="sa" data-id="2"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="3">Gym<input type="hidden" name="et" value="gy" data-id="3"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="4">Beauty Parlor<input type="hidden" name="et" value="bp" data-id="4"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="5">Beauty Parlor At Home<input type="hidden" name="et" value="bph" data-id="5"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="6">Skin Care Clinic<input type="hidden" name="et" value="skc" data-id="6"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="7">Slimming Center<input type="hidden" name="et" value="slc" data-id="7"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="8">Party & Bridal MakeUp<input type="hidden" name="et" value="pbm" data-id="8"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="9">Dietitian<input type="hidden" name="et" value="dt" data-id="9"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="10">Yoga & Aerobics<input type="hidden" name="et" value="ya" data-id="10"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="11">Nail Art<input type="hidden" name="et" value="na" data-id="11"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="12">Body Piercing<input type="hidden" name="et" value="bpp" data-id="12"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="13">Mehendi<input type="hidden" name="et" value="md" data-id="13"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="14">Tattoo<input type="hidden" name="et" value="tt" data-id="14"></div>
+    <div class="col-md-3 btn btn-default checkbox-btn" data-caID="15">Others<input type="hidden" name="et" value="ot" data-id="15"></div>
+
+
+</div>
+
+<div class="form-group clearfix ">
+    <label>Highlights</label>
+    <br>
+    <div class="col-md-2 btn btn-default checkbox-btn">Male<input type="hidden" name="hl" value="fm" data-id="1"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn">Female<input type="hidden" name="hl" value="fw" data-id="2"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn">Air-conditioner<input type="hidden" name="hl" value="ac" data-id="6"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn">Parking<input type="hidden" name="hl" value="pa" data-id="3"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn">Wifi<input type="hidden" name="hl" value="wi" data-id="4"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn" style="padding-left: 0;padding-right: 0;">Debit/Credit Card<input value="ca" type="hidden" name="hl" data-id="5"></div>
+    <div class="col-md-2 btn btn-default checkbox-btn">Home Service<input type="hidden" name="hl" value="hs" data-id="7"></div>
+</div>
+<div class="form-group clearfix brands">
+    <label>Brands*</label>
+    <br>
+</div>
+<div class="form-group">
+    <label class="clearfix" >Description</label><br><textarea maxlength="200" class="form-control" style="  max-width: 100%;"><%if(data!=undefined) {%><%= data.description%><%}%></textarea>
+</div>
+<div class="form-group">
+    <label class="clearfix">Profile Photo</label>
+    <div id="profile-fine-uploader"></div>
+</div>
+<div class="form-group">
+    <label class="clearfix">Cover Photo</label>
+    <div id="cover-fine-uploader"></div>
+</div>
+<div class="form-group">
+    <label class="clearfix">Rate Card Photos<small> (max 10)</small></label>
+    <div id="rate-card-fine-uploader"></div>
+</div>
+<div class="form-group">
+    <label class="clearfix">Store Photos<small> (max 10)</small></label>
+    <div id="store-fine-uploader"></div>
+</div>
+
+<input class="btn btn-danger submit-listing" type="button"  value="Submit">
+<span id="status" class="label label-danger pull-right"></span>
+
+</form>
+</div>
+<div class="col-md-4">
+    <!-- <h3>Looking for free Listing</h3>
+    <p>Please call +99-999999 <br>or Email : <br>freelist@lookplex.com</p> -->
+</div>
+
+</div>
+<style type="text/css">
+    .time-item>span{
+        width: 130px;
+        color: #111;
+        display: inline-block;
+    }
+    .closed, .clear {
+        text-align: center;
+        color: blue !important;
+    }
+</style>
+<link rel="stylesheet" href="https://static.lookplex.com/css/1.0/fine-uploader-gallery.css"></link>
+<!--<script type="text/javascript" src="https://static.lookplex.com/js/1.0/s3.jquery.fine-uploader.min.js"></script>-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $result="";
+    $isComplete=false;
+    $errorLog="";
+    $latitude="";
+    $longitude="";
+    $brands=[];
+    $blockids=[];
+    $aminities=[];
+    $storeguid="";
+    $catIds=[];
+    $map = [];
+    $marker = [];
+    $geocoder = [];
+    //function loadmap
+
+    $days=["sundayTiming","mondayTiming","tuesdayTiming","wednesdayTiming","thursdayTiming","fridayTiming","saturdayTiming"];
+    $times=["OFF","OFF","OFF","OFF","OFF","OFF","OFF"];
+
+
+    /*
+     HANDLE MAP EVENT
+     */
+    function updateField(currentPosition,response){
+        $latitude=currentPosition.lat();
+        $longitude=currentPosition.lng();
+        var coordinateStr = currentPosition.lat() + "," + currentPosition.lng();
+        $("input[name=coordinate]").val(coordinateStr);
+        $("input[name=address]").val(response);
+        return;
+    }
+
+    function dragMarker($marker){
+        google.maps.event.addListener($marker,'dragend',function(){
+
+            var currentPosition = this.getPosition();
+
+            mapToAddress(currentPosition);
+
+        });
+    }
+
+    function mapToAddress(currentPosition){
+        $geocoder.geocode({
+            latLng: currentPosition
+        }, function(responses) {
+            if (responses && responses.length > 0) {
+                resp = responses[0].formatted_address;
+
+            } else {
+                resp = 'Cannot determine address at this location.';
+
+            }
+            updateField(currentPosition,resp);
+        });
+
+    }
+
+    function addressToMap(address){
+        $geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                $marker.setMap(null);
+                $map.setCenter(results[0].geometry.location);
+                $marker = new google.maps.Marker({
+                    map: $map,
+                    position: results[0].geometry.location,
+                    draggable:true,
+                    animation: google.maps.Animation.DROP,
+                    zoom:14,
+                    title: 'the place'
+                });
+                $marker.setMap($map);
+
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+            var currentPosition = $marker.getPosition();
+
+            updateField(currentPosition,address);
+            dragMarker($marker);
+        });
+    }
+
+    function loadmap(e,f){
+        var d=$("#googleMap").attr('data-coordinate')
+        e=d.split(",")[0];
+        f=d.split(",")[1];
+        //console.log(e+" "+ f);
+        if(e==undefined || e=="" || f==undefined || f==""){
+            e=28.5739334;
+            f=77.2765164;
+        }
+
+
+        var pos=new google.maps.LatLng(e,f);
+        $geocoder = new google.maps.Geocoder();
+        var mapProp = {
+            center: pos,
+            zoom:18,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        $map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+        $marker = new google.maps.Marker({
+            position: pos,
+            map: $map,
+            draggable:true,
+            animation: google.maps.Animation.DROP,
+            title: 'the place'
+        });
+        $marker.setMap($map);
+
+        dragMarker($marker);
+
+        $(document).on( "change","input[name=address]", function(){
+            var address = $(this).val();
+
+            addressToMap(address);
+        });
+
+        $(document).on( "change","input[name=coordinate]", function(){
+            var coordinate = $(this).val();
+            var lat=coordinate.split(",")[0];
+            var lng=coordinate.split(",")[1];
+            var currentPos =new google.maps.LatLng(lat,lng);
+            $marker.setPosition(currentPos);
+            $map.setZoom(18);      // This will trigger a zoom_changed on the map
+            $map.setCenter(currentPos);
+            mapToAddress(currentPos);
+        });
+    }
+    /*
+     HANDLE INPUT CLICKS
+     **/
+
+    $(document).off('click',".hoo .form-inline .form-group .checkbox-btn");
+    $(document).on('click',".hoo .form-inline .form-group .checkbox-btn",function(){
+        $dayval = $(this).children("input[name=day]").val();
+        $dayindex = $days.indexOf($dayval);
+        $from_time = $(this).parent().next(".form-group").find("select.time[name=from]").val();
+        $to_time = $(this).parent().next(".form-group").next(".form-group").find("select.time[name=to]").val();
+        if($(this).hasClass("btn-primary")==true && validate_time($from_time,$to_time)==true && $from_time!="OFF" && $to_time!="OFF"){
+
+            $times[$dayindex]=$from_time+"-"+$to_time;
+
+        }else{
+            $times[$dayindex]="OFF";
+        }
+        console.log("days : "+ JSON.stringify($days) +"\n"+JSON.stringify($times));
+    });
+
+// $(document).off('change',".hoo .form-inline .form-group select");
+// $(document).on('change',".hoo .form-inline .form-group select",function(){
+//     if ($(this).attr("name") == "from") {
+//       if ($(this).parent().prev(".form-group").children("div.btn").hasClass("btn-primary")==true) {
+//         $dayval = $(this).parent().prev(".form-group").children("div.btn").children("input[name=day]").val();
+//         $dayindex = $days.indexOf($dayval);
+
+//         $from_time = $(this).val();
+//         $to_time = $(this).parent().next(".form-group").find("select.time[name=to]").val();
+//         if (validate_time($from_time,$to_time)==true && $from_time!="OFF" && $to_time!="OFF") {
+
+//           $times[$dayindex]=$from_time+"-"+$to_time;
+
+//         }
+
+//       }
+//     }else if ($(this).attr("name") == "to") {
+//       if ($(this).parent().prev(".form-group").prev(".form-group").children("div.btn").hasClass("btn-primary")==true) {
+//         $dayval = $(this).parent().prev(".form-group").prev(".form-group").children("div.btn").children("input[name=day]").val();
+//         $dayindex = $days.indexOf($dayval);
+
+//         $from_time = $(this).parent().prev(".form-group").find("select.time[name=from]").val();
+//         $to_time = $(this).val();
+//         if (validate_time($from_time,$to_time)==true && $from_time!="OFF" && $to_time!="OFF") {
+
+//           $times[$dayindex]=$from_time+"-"+$to_time;
+
+//       }
+
+//       }
+//     }
+
+//     console.log("days : "+ JSON.stringify($days) +"\n"+JSON.stringify($times));
+// });
+
+    function updateDayTime(i,d){
+        $input=$("body").find('input[value='+d+']');
+        if($input.parent().hasClass("btn-primary")==true){
+            $ftime = $input.parent('.btn').parent('.form-group').next('.form-group').children('select.time[name=from]').val();
+
+            $ttime = $input.parent('.btn').parent('.form-group').next('.form-group').next('.form-group').children('select.time[name=to]').val();
+            if(validate_time($ftime,$ttime)==true && $ftime!="OFF" && $ttime!="OFF"){
+                $times[i]=$ftime+"-"+$ttime;
+            }
+        }
+        return;
+    }
+
+// function clearDayTime(i,d){
+//     $input=$("body").find('input[value='+d+']')
+//     $input.parent().removeClass("btn-primary").addClass("btn-default");
+
+//     $times[i]="OFF";
+//     return;
+// }
+
+// $(document).off('click',"#sa");
+// $(document).on('click',"#sa",function(){
+
+//   if($(this).is(":checked")){
+//     $.each($days,function(i,d){
+
+//             updateDayTime(i,d);
+
+//       });
+//   }
+//   else{
+//     $.each($days,function(i,d){
+
+//             clearDayTime(i,d);
+
+//       });
+//   }
+//   console.log("days : "+ JSON.stringify($days) +"\n"+JSON.stringify($times));
+// })
+
+    /*function changeDayTime(i,d,tval,t){
+     $input= $("body").find('input[value='+d+']');
+     if ($input.parent().hasClass("btn-default")) {
+     $input.parent().removeClass("btn-default").addClass("btn-primary");
+     }
+
+     if (t=='from') {
+     $selectfrom = $input.parent('.btn').parent('.form-group').next('.form-group').children('select.time[name=from]');
+     $selectfrom.val(tval);
+     $ftime = tval;
+
+     $ttime = $input.parent('.btn').parent('.form-group').next('.form-group').next('.form-group').children('select.time[name=to]').val();
+     $dayindex = $days.indexOf(d);
+     $times[$dayindex]=$ftime+"-"+$ttime;
+     }else if (t=='to') {
+     $selectto = $input.parent('.btn').parent('.form-group').next('.form-group').next('.form-group').children('select.time[name=to]');
+     $selectto.val(tval);
+     $ftime = $input.parent('.btn').parent('.form-group').next('.form-group').children('select.time[name=from]').val();
+
+     $ttime = tval;
+     $dayindex = $days.indexOf(d);
+     $times[$dayindex]=$ftime+"-"+$ttime;
+     }
+
+     return;
+     }*/
+
+    $(document).off('change',".mondaytimingfrom");
+    $(document).on('change',".mondaytimingfrom",function(){
+        $tempdays=["tuesdayTiming","wednesdayTiming","thursdayTiming","fridayTiming","saturdayTiming"];
+
+        $modfromtime = $(this).val();
+        $input = $("body").find('input[value=mondayTiming]');
+        $('div[name=daybutton]').removeClass("btn-default").addClass("btn-primary");
+        $('select[name=tuesdayTimingfrom]').val($modfromtime);
+        $('select[name=wednesdayTimingfrom]').val($modfromtime);
+        $('select[name=thursdayTimingfrom]').val($modfromtime);
+        $('select[name=fridayTimingfrom]').val($modfromtime);
+        $('select[name=saturdayTimingfrom]').val($modfromtime);
+        $('select[name=sundayTimingfrom]').val($modfromtime);
+    });
+
+    $(document).off('change',".mondaytimingto");
+    $(document).on('change',".mondaytimingto",function(){
+        $tempdays=["tuesdayTiming","wednesdayTiming","thursdayTiming","fridayTiming","saturdayTiming"];
+        $modtotime = $(this).val();
+        $input= $("body").find('input[value=mondayTiming]');
+        $input.parent().removeClass("btn-default").addClass("btn-primary");
+        $.each($tempdays,function(i,d){
+
+            changeDayTime(i,d,$modtotime,'to');
+
+        });
+        console.log("days : "+ JSON.stringify($days) +"\n"+JSON.stringify($times));
+    });
+
+
+    /*********
+     HANDLE SUBMIT BUTTONS
+     ********/
+    $(document).off('click','.submit-listing');
+    $(document).on('click','.submit-listing',function(){
+
+        var formdatas=getFormDatas();
+        if($isComplete){
+            console.log("form isComplete "+true);
+            $.ajax({
+                url:$ROOT_URL+"/submitSAR",
+                type:'POST',
+                beforeSend:function(){
+                    $(".overlay").fadeIn();
+                },
+                data:{
+                    storedata:formdatas,
+                    storephoto:getimageUrls("store-fine-uploader",2),
+                    storeratecard:getimageUrls("rate-card-fine-uploader",3)
+                },
+                success:function(msg){
+                    $(".overlay").fadeOut();
+                    console.log("Success : "+msg);
+                    $("span#status").removeClass("label-danger").addClass("label-success").html(msg).fadeIn();
+                }
+            })
+        }
+        else{
+            console.log("form is Complete "+false);
+        }
+    });
+    ///used for amin view
+    $(document).off('click','.approve-listing');
+    $(document).on('click','.approve-listing',function(){
+
+        var formdatas=getFormDatas();
+
+        if($isComplete){
+            console.log("Form isComplete "+true);
+            $.ajax({
+                url:$ROOT_URL+"/approveSAR",
+                type:'POST',
+                beforeSend:function(){
+                    $(".overlay").fadeIn();
+                },
+                data:{
+                    storedata:formdatas,
+                    storephoto:getimageUrls("store-fine-uploader",2),
+                    storeratecard:getimageUrls("rate-card-fine-uploader",3),
+                    blocklocationid:$blockids.toString(),
+                    brandId:getBrands(),
+                    categoryids:$catIds.toString(),
+                    aminityids:$aminities.toString(),
+                    lsessionid:cm.getCookie('lsessionID'),
+                    ladminid:cm.getCookie('ladminID')
+                },
+                success:function(msg){
+                    $(".overlay").fadeOut();
+                    console.log("Success : "+msg);
+                    $("span#status").removeClass("label-danger").addClass("label-success").html(msg).fadeIn();
+                },
+                error:function(msg){
+                    console.log("brands "+ JSON.stringify(msg));
+                }
+            })
+
+        }
+        else{
+            console.log("form isComplete "+false);
+        }
+    });
+    function validate_time(f,t,d){
+        $time_log="";
+        if(f=="" || t==""){
+            $time_log="Select both the timings!";
+        }
+        if(d<1){
+            $time_log="Select at least a day.";
+        }
+        $("#time-validation").html($time_log);
+        if($time_log!=""){ return false; }
+        return true;
+    }
+    function getDayTime(){
+        var mondayTime = $('select[name=mondayTimingfrom]').val() + "-" +$('select[name=mondayTimingto]').val();
+        var tuesdayTime = $('select[name=tuesdayTimingfrom]').val() + "-" +$('select[name=tuesdayTimingto]').val();
+        var wednesdayTime = $('select[name=wednesdayTimingfrom]').val() + "-" +$('select[name=wednesdayTimingto]').val();
+        var thursdayTime = $('select[name=thursdayTimingfrom]').val() + "-" +$('select[name=thursdayTimingto]').val();
+        var fridayTime = $('select[name=fridayTimingfrom]').val() + "-" +$('select[name=fridayTimingto]').val();
+        var saturdayTime = $('select[name=saturdayTimingfrom]').val() + "-" +$('select[name=saturdayTimingto]').val();
+        var sundayTime = $('select[name=sundayTimingfrom]').val() + "-" +$('select[name=sundayTimingto]').val();
+        console.log(mondayTime + "----------");
+        var str = "\"sundayTiming\":"+"\""+sundayTime+"\""+",\"mondayTiming\":"+"\""+mondayTime+"\""+",\"tuesdayTiming\":"+"\""+tuesdayTime+"\""+",\"wednesdayTiming\":"+"\""+wednesdayTime+"\""+",\"thursdayTiming\":"+"\""+thursdayTime+"\""+",\"fridayTiming\":"+"\""+fridayTime+"\""+",\"saturdayTiming\":"+"\""+saturdayTime+"\"";
+        console.log(str);
+        return str;
+    }
+
+    //getlocation suggesstion
+
+    /*******
+     Block location hover
+     **********/
+
+    $suggestionInterval="";
+    function getLocationSuggestion($query_location){
+        console.log("sending "+$query_location);
+        $.ajax({
+            type:"POST",
+            url: $ROOT_URL+"/getLocation",
+            cache:false,
+            data:"location="+$query_location,
+            dataType:"json",
+            xhrFields: {
+                // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+                // This can be used to set the 'withCredentials' property.
+                // Set the value to 'true' if you'd like to pass cookies to the server.
+                // If this is enabled, your server must respond with the header
+                // 'Access-Control-Allow-Credentials: true'.
+                withCredentials: false
+            },
+            //headers: {
+            // Set any custom headers here.
+            // If you set any non-simple headers, your server must include these
+            // headers in the 'Access-Control-Allow-Headers' response header.
+            //Access-Control-Allow-Headers: "Content-Type, Content-Range, Content-Disposition, Content-Description",
+            //},
+            success:function(data,status,jqXhr){
+                $(".search-bar-spinner").fadeOut();
+                $location_suggestion="";
+                $.each(data,function(index,element){
+                    $location_suggestion+="<div class=\"list-group-item location-item\" data-l-guid=\""+element.id+"\">"+element.locationName+"</div>";
+                });
+                $(".bl-suggestion").html($location_suggestion).slideDown();
+            }
+        });
+    };//get Location suggestion
+
+    $suggestionTimeout="";
+    $(document).on({
+
+        focusin :function(){
+
+            //$('html, body').animate({scrollTop:200},500);
+            $(".bl-suggestion").slideUp();
+            $queryNew=$("input[name=block-location]").val();
+
+
+            $(this).on("keyup",function(e){
+                $queryNew=$("input[name=block-location]").val();
+                console.log("current input :"+$queryNew);
+                if($suggestionTimeout!=""){clearTimeout($suggestionTimeout);}
+                $suggestionTimeout=setTimeout(function(){
+                            if($queryNew!=$queryOld && $queryNew.length>2){
+                                console.log("query sent: "+$queryNew);
+                                getLocationSuggestion($queryNew);
+                            }
+                            else{
+                                $(".bl-suggestion").fadeOut();
+                            }
+                        }
+                        ,500);
+            });
+        }
+
+    },"input[name=block-location]");
+
+    $(document).on({
+        click:function(){
+            if($blockids.indexOf($(this).attr('data-l-guid'))<0){
+                $label="<label class=\"label label-primary\" data-guid=\""+$(this).attr('data-l-guid')+"\">"+$(this).html()+"</label>";
+                $(".bl-labels").append($label);
+                $blockids.push($(this).attr('data-l-guid'));
+                console.log($brands.toString());
+            }
+            else{
+                console.log('already added.');
+            }
+        }
+    },'.bl-suggestion>.list-group-item');
+
+    $(document).on({
+        click:function(){
+            $pos=$blockids.indexOf($(this).attr('data-guid'));
+            $blockids.splice($pos,1);
+            //console.log($blockids.toString());
+            $(this).remove();
+        }
+    },'.bl-labels>label');
+
+
+
+
+
+    function getStoreName(){
+        return getInputVal("name",true,"storename");
+    };
+    function getEmail(){
+        return getInputVal("email",true,"email");
+    };
+    function getPhone(){
+        return getInputVal("phone",true,"phone");
+    };
+    function getAddress(){
+        return getInputVal("address",true,"address");
+    };
+    function getCoordinate(){
+        if($latitude!="" && $longitude!=""){ return "\"coordinate\":\""+$latitude+","+$longitude+"\"";}
+        return  "\"coordinate\":\""+"\"";
+    };
+    function getInputVal(inputName,isMandatory,returnAs){
+        if($("input[name="+inputName+"]").val()!=""){
+            removeFormError(1,"input[name="+inputName+"]");
+        }
+        else{
+            if(isMandatory==true){
+                formError(1,"input[name="+inputName+"]");
+            }
+        }
+        return "\""+returnAs+"\":\""+$("input[name="+inputName+"]").val()+"\"";
+    };
+
+    /*
+     function get_day_timings(){
+
+     $days=$("input[name=day]");
+     $hoo_data="";
+     $.each($days,function(index,value){
+
+     $day=$days.eq(index).val();
+     $timings=$(this).parent().parent().parent().find('td>select[name=from]').val()+" to "+$(this).parent().parent().parent().find('td>select[name=to]').val();
+     if($hoo_data!=""){$hoo_data+=",";}
+     $hoo_data+="\""+$day+"\":\""+$timings+"\"";
+     });
+     return $hoo_data;
+     };
+     */
+    function getCategoryList(){
+        $result="";
+        $el=$("input[name=et].checked");
+        $.each($el,function(index){
+            if($result!=""){$result+=",";}
+            $v=$el.eq(index).val();
+            $result+=$v;
+            $catIds.push($el.eq(index).attr('data-id'));
+        });
+        return "\"categoryList\":\""+$result+"\"";
+        //else{formError("input[name=et]");}
+    };
+
+    function getHighlights(){
+        $result="";
+        $el=$("input[name=hl].checked");
+        $aminities=[];
+        $.each($el,function(index){
+            if($result!=""){$result+=",";}
+            $v=$el.eq(index).val();
+            $result+=$v;
+            $aminities.push($el.eq(index).attr('data-id'));
+
+        });
+        //console.log($aminities.toString());
+        return "\"attributeList\":\""+$result+"\"";
+    };
+
+    function getBrands(){
+        $brands=[];
+        $el=$("input[name=brand].checked");
+        $.each($el,function(index){
+            $brands.push($el.eq(index).val());
+        });
+        return $brands.toString();
+    };
+
+    function getDescription(){
+
+        $el=$("textarea");
+        $result=$el.val();
+        if($result!=""){
+            removeFormError(1,"textarea");
+        }else{
+            formError(1,"textarea");
+        }
+        return "\"description\":\""+$result+"\"";
+    };
+
+    function getSData(){
+        //if($('input[name=sdata]').val()=="" || $('input[name=sdata]').val()==undefined ){return "\"guid\":\"\""; }
+        $val=$('input[name=sdata]').val().split("-");
+        $id=$val[0];
+        $guid=$val[1];
+        $version=$val[2];
+        return  "\"id\":\""+$id+"\","+"\"guid\":\""+$guid+"\"";
+    };
+
+    function getFormDatas(){
+        /*
+         console.log(getimageUrls("cover-fine-uploader-s3",4));
+         console.log(getimageUrls("profile-fine-uploader-s3",1));
+         console.log(getimageUrls("store-fine-uploader-s3",2));
+         console.log(getimageUrls("rate-card-fine-uploader-s3",3) );
+         */
+        return "{"+getSData()+","+getStoreName()+","+getEmail()+","+getPhone()+","+getAddress()+","+getCoordinate()+","+getDayTime()+","+getCategoryList()+","+getHighlights()+","+getDescription()+","+getimageUrls("profile-fine-uploader",1)+","+getimageUrls("cover-fine-uploader",4)+"}";
+    };
+
+    function formError(d,e){
+        $isComplete=false;
+        $(e).parent().addClass('has-warning').addClass('has-feedback').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+        $("#status").html("Fill all the fields!");
+    };
+    function removeFormError(f,e){
+        $isComplete=true;
+        $(e).parent().removeClass('has-warning').removeClass('has-feedback');
+    };
+
+    setTimeout(loadmap,500);
+
+
+    var getimageUrls;
+
+
+///////////////////////////////////////////////////////////////////////
+    // FINE UPLOADER
+//////////////////////////////////////////////////////////////////////
+    $.getScript('https://static.lookplex.com/js/1.2/jquery.fine-uploader.min.js',function(){//https://static.lookplex.com/js/1.0
+
+
+        $prep='https://static.lookplex.com/images/1.2';
+        $('#profile-fine-uploader').fineUploader({
+            template: 'qq-template-gallery',
+            request: {
+                endpoint:$uploadPoint+"profile"
+            },
+            session : {
+                endpoint: $SER_URL+"/spsession/profile/",
+                refreshOnRequest:true
+            },
+            thumbnails: {
+                placeholders: {
+                    waitingPath: $prep+'/fineuploader/waiting-generic.png',//'images/fineuploader/waiting-generic.png',
+                    notAvailablePath: $prep+ '/fineuploader/not_available-generic.png'
+                }
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'png'],
+                itemLimit: 1,
+                sizeLimit: 5000000
+            },
+            cors: {
+                expected: true,
+                sendCredentials: true
+            },
+            chunking: {
+                enabled: false
+            },
+            resume: {
+                enabled: true
+            },
+            callbacks: {
+                onComplete: function(id, name, response) {
+                    console.log("complete");
+                },
+                onError: function(id, name, errorReason, xhrOrXdr) {
+                    window.alert(name+"\'s "+errorReason );
+                }
+                /*onDelete: function(id) {
+                 var name = this.getName(id);
+                 this.setDeleteFileParams({filename: name}, id);
+                 }*/
+
+            }
+
+        });//profile fine uploader
+        $('#cover-fine-uploader').fineUploader({
+            template: 'qq-template-gallery',
+            request: {
+                endpoint:$uploadPoint+"cover"
+            },
+            session : {
+                endpoint: $SER_URL+"/spsession/cover",
+                refreshOnRequest:true
+            },
+            thumbnails: {
+                placeholders: {
+                    waitingPath:  $prep+'/fineuploader/waiting-generic.png',
+                    notAvailablePath:  $prep+'/fineuploader/not_available-generic.png'
+                }
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'png'],
+                itemLimit: 1,
+                sizeLimit: 5000000
+            },
+            cors: {
+                expected: true,
+                sendCredentials: true
+            },
+            chunking: {
+                enabled: false
+            },
+            resume: {
+                enabled: true
+            },
+
+            callbacks: {
+                onComplete: function(id, name, response) {
+                    console.log("complete");
+                },
+                onError: function(id, name, errorReason, xhrOrXdr) {
+                    window.alert(name+"\'s "+errorReason );
+
+                }
+
+            }});//profile fine uploader
+        $('#rate-card-fine-uploader').fineUploader({
+            template: 'qq-template-gallery',
+            request: {
+                endpoint:$uploadPoint
+            },
+            session : {
+                endpoint: $SER_URL+"/rcsession/",
+                refreshOnRequest:true
+            },
+            thumbnails: {
+                placeholders: {
+                    waitingPath:  $prep+'/fineuploader/waiting-generic.png',
+                    notAvailablePath:  $prep+'/fineuploader/not_available-generic.png'
+                }
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'png'],
+                itemLimit: 10,
+                sizeLimit: 5000000
+            },
+            cors: {
+                expected: true,
+                sendCredentials: true
+            },
+            chunking: {
+                enabled: false
+            },
+            resume: {
+                enabled: true
+            },
+
+            callbacks: {
+                onComplete: function(id, name, response) {
+
+                    console.log("complete");
+                }
+
+            }
+
+        });//profile fine uploader
+        $('#store-fine-uploader').fineUploader({
+            template: 'qq-template-gallery',
+            request: {
+                endpoint:$uploadPoint
+            },
+            session : {
+                endpoint: $SER_URL+"/spsession/",
+                refreshOnRequest:true
+            },
+            thumbnails: {
+                placeholders: {
+                    waitingPath:  $prep+'/fineuploader/waiting-generic.png',
+                    notAvailablePath:  $prep+'/fineuploader/not_available-generic.png'
+                }
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'png'],
+                itemLimit: 10,
+                sizeLimit: 5000000
+            },
+            cors: {
+                expected: true,
+                sendCredentials: true
+            },
+            chunking: {
+                enabled: false
+            },
+            resume: {
+                enabled: true
+            },
+
+            callbacks: {
+                onComplete: function(id, name, response) {
+
+                    console.log("complete");
+                }
+
+            }
+
+        });//profile fine uploader
+
+
+
+
+        getimageUrls=function (e,f){
+            var result="";
+            var files = $("#"+e).fineUploader('getUploads',{status:qq.status.UPLOAD_SUCCESSFUL, xhrFields: {withCredentials: true },crossDomain: true});
+            $.each(files,function(index,value){
+                console.log(value);
+                if(result!="") result+=",";
+                result+=value.uuid;
+            });
+            if(f==1){
+                return "\"profileurl\":\""+result+"\"";
+            }
+            else if(f==4){
+                return "\"coverUrl\":\""+result+"\"";
+            }
+            else{
+                return result;
+            }
+        };
+    }); // get script end
+
+
+
+})
+
+
+
+
+</script>
+<script type="text/template" id="loader">
+    <div class="circle-outer fa-spin"></div>
+</script>
+
+<!-- Fine Uploader Gallery template
+====================================================================== -->
+<script type="text/template" id="qq-template-gallery">
+    <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">
+        <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+            <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+        </div>
+        <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+            <span class="qq-upload-drop-area-text-selector"></span>
+        </div>
+        <div class="qq-upload-button-selector qq-upload-button">
+            <div>Upload a file</div>
+        </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+        <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+            <li>
+                <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                <div class="qq-progress-bar-container-selector qq-progress-bar-container">
+                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                </div>
+                <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                <div class="qq-thumbnail-wrapper">
+                    <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                </div>
+                <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+                <button type="button" class="qq-upload-retry-selector qq-upload-retry">
+                    <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
+                    Retry
+                </button>
+
+                <div class="qq-file-info">
+                    <div class="qq-file-name">
+                        <span class="qq-upload-file-selector qq-upload-file"></span>
+                        <span class="qq-edit-filename-icon-selector qq-edit-filename-icon" aria-label="Edit filename"></span>
+                    </div>
+                    <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                    <span class="qq-upload-size-selector qq-upload-size"></span>
+                    <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+                        <span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
+                    </button>
+                    <button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
+                        <span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
+                    </button>
+                    <button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
+                        <span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
+        <dialog class="qq-alert-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">Close</button>
+            </div>
+        </dialog>
+
+        <dialog class="qq-confirm-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">No</button>
+                <button type="button" class="qq-ok-button-selector">Yes</button>
+            </div>
+        </dialog>
+
+        <dialog class="qq-prompt-dialog-selector">
+            <div class="qq-dialog-message-selector"></div>
+            <input type="text">
+            <div class="qq-dialog-buttons">
+                <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                <button type="button" class="qq-ok-button-selector">Ok</button>
+            </div>
+        </dialog>
+    </div>
+</script>
+
+<style>
+    #profile-fine-uploader .preview-link,#store-fine-uploader .preview-link {
+        display: block;
+        height: 100%;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+</style>

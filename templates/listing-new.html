@@ -1,0 +1,731 @@
+<!-- PhotoSessionID -->
+<div class="wrapper clearfix">
+<div class="col-md-8">
+<h3></h3>
+
+<input type="hidden" name="sdata" <%if(data!=undefined) {%> value="<%= data.id %>-<%= data.guid %>-<%= data.version %>" <%}%>>
+<form class="company-form">
+<div class="form-group">
+<label>Name of the business*</label><input class="form-control" type="text" name="name" <%if(data!=undefined) {%> value="<%= data.storename %>" <%}%>>
+</div>
+<!-- <div class="form-group">
+<label>Authorised Person*</label>
+<input class="form-control" type="text"  name="auth-person">
+</div>
+<div class="form-group">
+<label>Designation*</label>
+<input class="form-control" type="text"  name="name">
+</div>
+ -->
+<div class="form-group">
+<label>Email*</label>
+<input class="form-control" type="email"  name="email" <%if(data!=undefined) {%>value="<%= data.email %>"<%}%>>
+</div>
+<!-- <div class="form-group">
+<label class="col-md-6">Established in Year* <input class="form-control" type="date"  name="location"></label>
+<div class="btn-group" data-toggle="buttons">
+	<span>Do you have any branch?</span>
+  <label class="btn btn-default">
+    <input value="1" type="radio" name="havebranch" autocomplete="off"> Yes
+  </label>
+  <label class="btn btn-default">
+    <input value="0" type="radio" name="havebranch" autocomplete="off"> No
+  </label>
+</div> 
+
+</div>-->
+<div class="form-group">
+<label>Phone*</label>
+<input class="form-control" type="tel"  name="phone" <%if(data!=undefined) {%>value="<%= data.phone %>"<%}%>>
+</div>
+
+<div class="form-group">
+<label>Address*</label>
+<input class="form-control" type="text"  name="address" <%if(data!=undefined) {%> value="<%= data.address %>"<%}%>>
+</div>
+<div class="form-group hidden bl">
+<label>Block Location*</label>
+<div class="bl-labels"></div>
+<input class="form-control" type="text" name="block-location" >
+<div class="list-group bl-suggestion">
+<!-- <div class="list-group-item">A</div> -->
+</div>
+</div>
+
+<div class="form-group">
+<label><small>Drag and drop marker to establishment location*</small></label>
+<div id="googleMap" style="width:100%; height:300px" <%if(data!=undefined) {%>data-coordinate="<%= data.coordinate %>"><%}%></div>
+</div>
+<!-- <div class="form-group">
+<label>Landmark*</label>
+<input class="form-control" type="text"  name="landmark">
+</div>
+
+<div class="form-group">
+<label class="col-md-6">City* <input class="form-control" type="text"  name="city"></label>
+<label class="col-md-6 pincode">Pincode* <input class="form-control" type="number" maxlength="6"  name="pincode"></label>
+</div> -->
+
+<div class="form-inline">
+<div class="form-group">
+
+<label>Hours of operation*</label>
+<!-- <div class="hoo"><input type="hidden"><div class="btn btn-default">Sun</div></div> -->
+<table class="hoo">
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="sundaytiming">Sun</div></td>
+<td><select class="form-control" name="from" disabled>
+    <option value="" disabled selected>FROM</option>
+	</select>
+</td>
+<td>
+	<select class="form-control" name="to" disabled>
+	<option value="" disabled selected>TO</option>
+	</select>
+</td>
+</tr>
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="mondaytiming">Mon</div></td>
+<td>
+	<select class="form-control" name="from" disabled>
+    <option value="" disabled selected>FROM</option>
+	</select>
+</td>
+<td>
+	<select class="form-control" name="to" disabled>
+    <option value="" disabled  selected>TO</option>
+	</select>
+</td>
+</td>
+</tr>
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="tuesdaytiming">Tue</div></td>
+<td>
+	<select class="form-control" name="from" disabled>
+    <option value="" disabled selected>FROM</option>
+	</select>
+</td>
+<td>
+	<select class="form-control" name="to" disabled>
+    <option value="" disabled selected>TO</option>
+	</select>
+</td>
+</td>
+</tr>
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="wednesdaytiming">Wed</div></td>
+<td><select class="form-control" name="from" disabled>
+    <option value="" disabled selected>FROM</option>
+	</select></td>
+<td><select class="form-control" name="to" disabled>
+    <option value="" disabled selected>TO</option>
+	</select></td>
+</tr>
+
+</table>
+</div>
+<div class="form-group">
+
+<label>.</label>
+<!-- <div class="hoo"><input type="hidden"><div class="btn btn-default">Sun</div></div> -->
+<table class="hoo">
+
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="thursdaytiming">Thu</div></td><td><select class="form-control" disabled name="from">
+    <option value="" disabled selected>FROM</option>
+	</select></td><td><select class="form-control" name="to" disabled>
+    <option value="" disabled selected>TO</option>
+	</select></td></td></tr>
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="fridaytiming">Fri</div></td><td><select class="form-control" disabled name="from">
+    <option value="" disabled selected>FROM</option>
+	</select></td><td><select class="form-control" name="to" disabled>
+    <option value="" disabled selected>TO</option>
+	</select></td></td></tr>
+<tr><td><div class="btn btn-default  checkbox-btn"><input type="hidden" name="day" value="saturdaytiming">Sat</div></td><td><select class="form-control" disabled name="from">
+    <option value="" disabled selected>FROM</option>
+	</select></td><td><select class="form-control" name="to" disabled>
+    <option value="" disabled selected>TO</option>
+	</select></td></td></tr>
+
+</table>
+</div>
+</div>
+<div class="form-group clearfix">
+<label>Establishment Type*</label>
+<br>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="1">Spa<input type="hidden" name="et" value="sp" data-id="1"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="2">Salon<input type="hidden" name="et" value="sa" data-id="2"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="3">Beauty Parlor<input type="hidden" name="et" value="bp" data-id="3"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="4">Beauty Parlor At Home<input type="hidden" name="et" value="bph"data-id="4"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="5">Gym<input type="hidden" name="et" value="gy" data-id="5"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="6">Skin Care Clinic<input type="hidden" name="et" value="skc" data-id="6"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="7">Slimming Center<input type="hidden" name="et" value="slc" data-id="7"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="8">Party & Bridal MakeUp<input type="hidden" name="et" value="pbm" data-id="8"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="9">Dietitian<input type="hidden" name="et" value="dt" data-id="9"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="10">Yoga & Aerobics<input type="hidden" name="et" value="ya" data-id="10"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="11">Nail Art<input type="hidden" name="et" value="na" data-id="11"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="12">Body Piercing<input type="hidden" name="et" value="bp" data-id="12"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="13">Mehendi<input type="hidden" name="et" value="md" data-id="13"></div>
+<div class="col-md-3 btn btn-default checkbox-btn" data-caID="14">Others<input type="hidden" name="et" value="ot" data-id="14"></div>
+</div>
+
+<div class="form-group clearfix ">
+<label>Highlights</label>
+<br>
+<div class="col-md-2 btn btn-default checkbox-btn">Male<input type="hidden" name="hl" value="fm" data-id="1"></div>
+<div class="col-md-2 btn btn-default checkbox-btn">Female<input type="hidden" name="hl" value="fw" data-id="2"></div>
+<div class="col-md-2 btn btn-default checkbox-btn">Air-conditioner<input type="hidden" name="hl" value="ac" data-id="3"></div>
+<div class="col-md-2 btn btn-default checkbox-btn">Parking<input type="hidden" name="hl" value="pa" data-id="4"></div>
+<div class="col-md-2 btn btn-default checkbox-btn">Wifi<input type="hidden" name="hl" value="wi" data-id="5"></div>
+<div class="col-md-2 btn btn-default checkbox-btn" style="padding-left: 0;padding-right: 0;">Debit/Credit Card<input value="ca" type="hidden" name="hl" data-id="6"></div>
+<div class="col-md-2 btn btn-default checkbox-btn">Home Service<input type="hidden" name="hl" value="hs" data-id="7"></div>
+</div>
+<div class="form-group clearfix brands hidden">
+<label>Brands*</label>
+<br>
+</div>
+<div class="form-group">
+<label class="clearfix" >Description</label><br><textarea maxlength="200" class="form-control" style="  max-width: 100%;"><%if(data!=undefined) {%><%= data.description%><%}%></textarea>
+</div>
+<div class="form-group">
+<label class="clearfix">Profile Photo*</label>
+  <span class="btn btn-success fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Add files...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    <br>
+    <br>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+    <div id="files" class="files"></div>
+    <br>
+</div>
+<div class="form-group">
+<label class="clearfix">Cover Photo*</label>
+<div id="cover-fine-uploader-s3"></div>
+</div>
+<div class="form-group">
+<label class="clearfix">Rate Card Photos<small>(max 10)</small>*</label>
+<div id="rate-card-fine-uploader-s3"></div>
+</div>
+<div class="form-group">
+<label class="clearfix">Store Photos<small>(max 10)</small>*</label>
+<div id="store-fine-uploader-s3"></div>
+</div>
+
+<input class="btn btn-danger submit-listing" type="button"  value="Submit">
+<span id="status" class="label label-danger pull-right"></span>
+
+</form>
+</div>
+<div class="col-md-4">
+<!-- <h3>Looking for free Listing</h3>
+<p>Please call +99-999999 <br>or Email : <br>freelist@lookplex.com</p> -->
+</div>
+
+</div>
+<script type="text/template" id="timing-options">
+<option value="1200am">12:00am</option>
+<option value="1230am">12:30am</option>
+<option value="0100am">1:00am</option>
+<option value="0130am">1:30am</option>
+<option value="0200am">2:00am</option>
+<option value="0230am">2:30am</option>
+<option value="0300am">3:00am</option>
+<option value="0330am">3:30am</option>
+<option value="0400am">4:00am</option>
+<option value="0430am">4:30am</option>
+<option value="0500am">5:00am</option>
+<option value="0530am">5:30am</option>
+<option value="0600am">6:00am</option>
+<option value="0630am">6:30am</option>
+<option value="0700am">7:00am</option>
+<option value="0730am">7:30am</option>
+<option value="0800am">8:00am</option>
+<option value="0830am">8:30am</option>
+<option value="0900am">9:00am</option>
+<option value="0930am">9:30am</option>
+<option value="1000am">10:00am</option>
+<option value="1030am">10:30am</option>
+<option value="1100am">11:00am</option>
+<option value="1130am">11:30am</option>
+<option value="1200pm">12:00pm</option>
+<option value="1230pm">12:30pm</option>
+<option value="0100pm">1:00pm</option>
+<option value="0130pm">1:30pm</option>
+<option value="0200pm">2:00pm</option>
+<option value="0230pm">2:30pm</option>
+<option value="0300pm">3:00pm</option>
+<option value="0330pm">3:30pm</option>
+<option value="0400pm">4:00pm</option>
+<option value="0430pm">4:30pm</option>
+<option value="0500pm">5:00pm</option>
+<option value="0530pm">5:30pm</option>
+<option value="0600pm">6:00pm</option>
+<option value="0630pm">6:30pm</option>
+<option value="0700pm">7:00pm</option>
+<option value="0730pm">7:30pm</option>
+<option value="0800pm">8:00pm</option>
+<option value="0830pm">8:30pm</option>
+<option value="0900pm">9:00pm</option>
+<option value="0930pm">9:30pm</option>
+<option value="1000pm">10:00pm</option>
+<option value="1030pm">10:30pm</option>
+<option value="1100pm">11:00pm</option>
+<option value="1130pm">11:30pm</option>
+
+</script>
+<link rel="stylesheet" href="css/jquery.fileupload.css"></link>
+<link rel="stylesheet" href="css/jquery.fileupload-ui.css"></link>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+ 
+  $result="";
+  $isComplete=false;
+  $errorLog="";
+  $latitude="";
+  $longitude="";
+  $brands=[];
+  $blockids=[];
+  $aminities=[];
+  $storeguid="";
+  $catIds=[];
+  //function loadmap
+  
+  function loadmap(e,f){
+      var d=$("#googleMap").attr('data-coordinate')
+      e=d.split(",")[0];
+      f=d.split(",")[1];
+      //console.log(e+" "+ f);
+      if(e==undefined || e=="" || f==undefined || f==""){
+        e=28.5739334;
+        f=77.2765164;
+      }
+
+
+      var pos=new google.maps.LatLng(e,f);
+      var mapProp = {
+        center: pos,
+        zoom:14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+      var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+      var marker = new google.maps.Marker({
+          position: pos,
+          map: map,
+          draggable:true,
+          animation: google.maps.Animation.DROP,
+          title: 'the place'
+      });
+      marker.setMap(map);    
+      google.maps.event.addListener(marker,'dragend',function(){
+          $latitude=this.getPosition().lat();
+          $longitude=this.getPosition().lng();
+      });
+  }
+
+  /*********
+HANDLE SUBMIT BUTTONS
+  ********/
+ $(document).off('click','.submit-listing');
+ $(document).on('click','.submit-listing',function(){
+  
+    var formdatas=getFormDatas();
+    if($isComplete){
+        console.log("form isComplete "+true); 
+        $.ajax({
+          url:$ROOT_URL+"/submitSAR",
+          type:'POST',
+          beforeSend:function(){
+            $(".overlay").fadeIn();
+          },
+          data:{
+            storeData:formdatas, 
+            storephoto:getimageUrls("store-fine-uploader-s3",2), 
+            storeRateCard:getimageUrls("rate-card-fine-uploader-s3",3)
+          },
+          success:function(msg){
+            $(".overlay").fadeOut();
+            console.log("Success : "+msg);
+            $("span#status").removeClass("label-danger").addClass("label-success").html(msg).fadeIn();
+          }
+        })
+      }
+    else{
+      console.log("form isComplete "+false);
+      }
+  });
+  ///used for amin view
+  $(document).off('click','.approve-listing');
+  $(document).on('click','.approve-listing',function(){
+  
+    var formdatas=getFormDatas();
+    if($isComplete){
+        console.log("Form isComplete "+true); 
+        $.ajax({
+          url:$ROOT_URL+"/approveSAR",
+          type:'POST',
+          beforeSend:function(){
+            $(".overlay").fadeIn();
+          },
+          data:{
+            storeData:formdatas, 
+            storephoto:getimageUrls("store-fine-uploader-s3",2), 
+            storeRateCard:getimageUrls("rate-card-fine-uploader-s3",3),
+            blocklocationID:$blockids.toString(),
+            brandId:getBrands(),
+            categoryIds:$catIds.toString(),
+            aminityIds:$aminities.toString()
+          },
+          success:function(msg){
+            $(".overlay").fadeOut();
+            console.log("Success : "+msg);
+            $("label#status").addClass("label-successful").html(msg);
+          }
+        })
+       
+      }
+    else{
+      console.log("form isComplete "+false);
+      }
+  });
+
+    //getlocation suggesstion
+ 
+  /*******
+  Block location hover
+  **********/
+
+  $suggestionInterval="";
+  function getLocationSuggestion($query_location){
+    console.log($query_location);
+    $.ajax({
+            type:"POST",
+            url: $ROOT_URLs+"/getLocation",
+            cache:false,
+            data:"location="+$query_location,
+            dataType:"json",
+            xhrFields: {
+            // The 'xhrFields' property sets additional fields on the XMLHttpRequest.
+            // This can be used to set the 'withCredentials' property.
+            // Set the value to 'true' if you'd like to pass cookies to the server.
+            // If this is enabled, your server must respond with the header
+            // 'Access-Control-Allow-Credentials: true'.
+            withCredentials: false
+             },
+             //headers: {
+            // Set any custom headers here.
+            // If you set any non-simple headers, your server must include these
+            // headers in the 'Access-Control-Allow-Headers' response header.
+            //Access-Control-Allow-Headers: "Content-Type, Content-Range, Content-Disposition, Content-Description",
+            //},
+            success:function(data,status,jqXhr){
+              $(".search-bar-spinner").fadeOut();
+              $location_suggestion="";
+              $.each(data,function(index,element){
+                $location_suggestion+="<div class=\"list-group-item location-item\" data-l-guid=\""+element.id+"\">"+element.locationName+"</div>";
+              });
+        	 $(".bl-suggestion").html($location_suggestion).slideDown(); 
+              }
+            });
+  };//get Location suggestion
+ 
+ $(document).on({
+    click:function(){
+      if($blockids.indexOf($(this).attr('data-l-guid'))<0){
+          $label="<label class=\"label label-primary\" data-guid=\""+$(this).attr('data-l-guid')+"\">"+$(this).html()+"</label>";
+          $(".bl-labels").append($label);
+          $blockids.push($(this).attr('data-l-guid'));
+          console.log($brands.toString());
+      }
+      else{
+         console.log('already added.');
+      }
+    }
+ },'.bl-suggestion>.list-group-item');
+ $(document).on({
+    click:function(){
+      $pos=$blockids.indexOf($(this).attr('data-guid'));
+      $blockids.splice($pos,1);
+      //console.log($blockids.toString());
+      $(this).remove();
+    }
+ },'.bl-labels>label');
+
+
+
+
+
+  function getStoreName(){
+    return getInputVal("name",true,"storename");
+  };
+  function getEmail(){
+    return getInputVal("email",true,"email");
+  };
+  function getPhone(){
+    return getInputVal("phone",true,"phone");
+  };
+  function getAddress(){
+    return getInputVal("address",true,"address");
+  };
+  function getCoordinate(){
+    if($latitude!="" && $longitude!=""){ return "\"coordinate\":\""+$latitude+","+$longitude+"\"";}
+     return  "\"coordinate\":\""+"\"";
+  };
+ function getInputVal(inputName,isMandatory,returnAs){
+    if($("input[name="+inputName+"]").val()!=""){
+        removeFormError(1,"input[name="+inputName+"]"); 
+      }
+    else{
+      if(isMandatory==true){
+        formError(1,"input[name="+inputName+"]");
+        }
+      }
+    return "\""+returnAs+"\":\""+$("input[name="+inputName+"]").val()+"\"";
+ };
+
+
+  function get_day_timings(){
+
+    $days=$("input[name=day]");
+    $hoo_data="";
+    $.each($days,function(index,value){
+      
+        $day=$days.eq(index).val();
+        $timings=$(this).parent().parent().parent().find('td>select[name=from]').val()+" to "+$(this).parent().parent().parent().find('td>select[name=to]').val();
+        if($hoo_data!=""){$hoo_data+=",";}
+        $hoo_data+="\""+$day+"\":\""+$timings+"\"";
+    });
+    return $hoo_data;
+  };
+
+  function getCategoryList(){
+   $result="";
+    $el=$("input[name=et].checked");
+    $.each($el,function(index){
+          if($result!=""){$result+=",";}
+          $v=$el.eq(index).val();
+          $result+=$v;
+          $catIds.push($el.eq(index).attr('data-id'));
+      });
+    return "\"categoryList\":\""+$result+"\"";
+    //else{formError("input[name=et]");}
+  };
+
+  function getHighlights(){
+    $result="";
+    $el=$("input[name=hl].checked");
+    $aminities=[];
+    $.each($el,function(index){
+          if($result!=""){$result+=",";}
+          $v=$el.eq(index).val();
+          $result+=$v;
+          $aminities.push($el.eq(index).attr('data-id'));
+ 
+    });
+    //console.log($aminities.toString());
+    return "\"attributeList\":\""+$result+"\"";
+  };
+
+  function getBrands(){
+    $brands=[];
+    $el=$("input[name=brand].checked");
+    $.each($el,function(index){
+          $brands.push($el.eq(index).val());
+    });
+    return $brands.toString();
+ };
+
+  function getDescription(){
+    
+    $el=$("textarea");
+    $result=$el.val();
+    if($result!=""){
+    removeFormError(1,"textarea");
+    }else{
+    formError(1,"textarea");
+    }
+    return "\"description\":\""+$result+"\"";
+  };
+ 
+  function getSData(){
+    //if($('input[name=sdata]').val()=="" || $('input[name=sdata]').val()==undefined ){return "\"guid\":\"\""; } 
+    $val=$('input[name=sdata]').val().split("-");
+    $id=$val[0];
+    $guid=$val[1];
+    $version=$val[2];
+    return  "\"id\":\""+$id+"\","+"\"guid\":\""+$guid+"\","+"\"version\":\""+$version+"\"";
+  };
+
+function getFormDatas(){
+  /*console.log(getimageUrls("cover-fine-uploader-s3",4));
+  console.log(getimageUrls("profile-fine-uploader-s3",1));
+  console.log(getimageUrls("store-fine-uploader-s3",2)); 
+  console.log(getimageUrls("rate-card-fine-uploader-s3",3) );
+  */
+   return "{"+getSData()+","+getStoreName()+","+getEmail()+","+getPhone()+","+getAddress()+","+getCoordinate()+","+get_day_timings()+","+getCategoryList()+","+getHighlights()+","+getDescription()+","+getimageUrls("profile-fine-uploader-s3",1)+","+getimageUrls("cover-fine-uploader-s3",4)+"}";
+  };
+  
+function formError(d,e){
+  $isComplete=false;
+  $(e).parent().addClass('has-warning').addClass('has-feedback').append('<span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>');
+  $("#status").html("Fill all the fields!");
+};
+function removeFormError(f,e){
+   $isComplete=true;
+   $(e).parent().removeClass('has-warning').removeClass('has-feedback');
+};
+ 
+ setTimeout(loadmap,500);
+
+/*$.getScript('js/jquery.ui.widget.js',function(){
+  $.getScript('js/jquery.iframe-transport.js',function(){
+    $.getScript('js/jquery.fileupload.js',function(){
+         $('#fileupload').fileupload({
+              dataType: 'json',
+              done: function (e, data) {
+                  $.each(data.result.files, function (index, file) {
+                      $('<p/>').text(file.name).appendTo(document.body);
+                  });
+              }
+         });
+    })
+  });
+});*/
+$.when(
+ $.getScript('js/jquery.ui.widget.js'),
+ $.getScript('js/jquery.iframe-transport.js'),
+ $.getScript('https://blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js'),
+ $.getScript('https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js'),
+ $.getScript('js/jquery.fileupload.js'),
+ $.getScript('js/jquery.fileupload-process.js'),
+ $.getScript('js/jquery.fileupload-image.js'),
+ $.getScript('js/jquery.fileupload-validate.js'),
+
+
+ $.Deferred(function(deferred){
+    $(deferred.resolve);
+ })
+).done(function(){
+  console.log("done");
+  $(function () {
+    'use strict';
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'blueimp.github.io' ?
+                '//jquery-file-upload.appspot.com/' : 'server/php/',
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: false,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        data.context = $('<div/>').appendTo('#files');
+        $.each(data.files, function (index, file) {
+            var node = $('<p/>')
+                    .append($('<span/>').text(file.name));
+            if (!index) {
+                node
+                    .append('<br>')
+                    .append(uploadButton.clone(true).data(data));
+            }
+            node.appendTo(data.context);
+        });
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index],
+            node = $(data.context.children()[index]);
+        if (file.preview) {
+            node
+                .prepend('<br>')
+                .prepend(file.preview);
+        }
+        if (file.error) {
+            node
+                .append('<br>')
+                .append($('<span class="text-danger"/>').text(file.error));
+        }
+        if (index + 1 === data.files.length) {
+            data.context.find('button')
+                .text('Upload')
+                .prop('disabled', !!data.files.error);
+        }
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+        $.each(data.result.files, function (index, file) {
+            if (file.url) {
+                var link = $('<a>')
+                    .attr('target', '_blank')
+                    .prop('href', file.url);
+                $(data.context.children()[index])
+                    .wrap(link);
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+                $(data.context.children()[index])
+                    .append('<br>')
+                    .append(error);
+            }
+        });
+    }).on('fileuploadfail', function (e, data) {
+        $.each(data.files, function (index) {
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
+            $(data.context.children()[index])
+                .append('<br>')
+                .append(error);
+        });
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+});// WHEN END
+
+
+
+
+
+
+	function getimageUrls(e,f){
+
+  }; // get script end
+ 
+
+
+})//document ready end
+
+
+   
+  
+</script>

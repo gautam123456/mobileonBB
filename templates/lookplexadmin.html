@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>LookPlex</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://static.lookplex.com/css/1.2/bootstrap-theme.min.css" rel="stylesheet">
+<link href="https://static.lookplex.com/css/1.2/lookplex.css" rel="stylesheet"></head>
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" ></script>
+<script src="https://static.lookplex.com/js/1.2/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="https://static.lookplex.com/js/1.2/lookplex.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+
+<div class="container-fluid how-it-works clearfix">
+<i class="fa fa-times pull-right close" ></i>
+<div class="col-md-4">a</div><div class="col-md-4"></div><div class="col-md-4"></div>
+</div>
+<div class="overlay"><div class="circle-outer fa-spin"></div></div>
+<div class="modal-container"></div>
+
+<div class="page-header gray-bg">
+<div class="wrapper">
+<a href="index.html" class="logo"><img src="https://static.lookplex.com/images/1.2/logo.png"></a>
+
+<form class="form-inline search-bar search-bar-top" method="post" autocomplete="off">
+  <div class="form-group"><input type="text" data-val="" class="form-control  no-rb" value="" name="location" placeholder="Search by city, landmark, colony">
+      <div class="list-group location-suggestion"></div>
+  </div><div class="form-group"><input type="text" class="form-control  no-lb"  value="" name="service" placeholder="Select your service">
+      <div class="list-group categories-list">
+        <div class="list-group-item" data-catID="1"><h4>Spa</h4></div>
+          <div class="list-group-item" data-catID="2"><h4>Salon</h4></div>
+          <div class="list-group-item" data-catID="3"><h4>Beauty Parlor</h4></div>
+          <div class="list-group-item" data-catID="4"><h4>Beauty Parlor at Home</h4></div>
+          <div class="list-group-item" data-catID="5"><h4>Gym</h4></div>
+          <div class="list-group-item" data-catID="6"><h4>Massage Parlor</h4></div>
+          <div class="list-group-item" data-catID="7"><h4>Skin Care Clinic</h4></div>
+            <div class="list-group-item" data-catID="8"><h4>Slimming Services</h4></div>
+            <div class="list-group-item" data-catID="9"><h4>Tattoo Services</h4></div>
+            <div class="list-group-item" data-catID="10"><h4>Bridal MakeUp</h4></div>
+            <div class="list-group-item" data-catID="11"><h4>Yoga</h4></div>
+            <div class="list-group-item" data-catID="12"><h4>Nail Ar/ Nail Spa</h4></div>
+            <div class="list-group-item" data-catID="13"><h4>Body Piercing</h4></div>                        
+            <div class="list-group-item" data-catID="14"><h4>Others</h4></div>
+      </div>
+  </div><a href="#/stores" id="search" class="btn">Search</a>
+</form>
+
+<div class="top-menu pull-right"><!-- <a href="#" data-target="#login">Log In</a> --><!--<a href="#" data-target="#signup">Sign Up</a>--><a href="#"  data-target="#faq">Help</a></div>
+</div>
+</div>
+
+<div class="main-container">
+
+</div>
+<div class="page-footer">
+<div class="wrapper">
+<div >
+<div class="footer-menu"><h4>Company</h4><a href="#">About</a><a href="/lookplexbootstrap/#/carrers">Careers</a><a href="/lookplexbootstrap/#/contactus">Contact Us</a><a href="/lookplexbootstrap/#/advertise">Advertise</a><a href="/lookplexbootstrap/#/freelisting">Free Listing</a><a href="/lookplexbootstrap//#/privacypolicy">Privacy Policy</a></div>
+
+<div class="footer-menu"><h4>Blogs</h4><a href="#">Hair Care</a><a href="#">Skin Care</a><a href="#">Fitness</a><a href="#">Make Up</a><a href="#">Diet</a></div>
+<div class="footer-menu">
+<h4 id="join-us">Join Us on</h4>
+<span></span>
+<div class="social-icons">
+  <a href="#" class="fa fa-2x fa-facebook-square"></a><a href="#" class="fa fa-2x fa-twitter-square"></a><a href="#" class="fa fa-2x fa-google-plus-square"></a></div>
+</div>
+
+
+</div>
+</div>
+</div>
+<div class="panel-footer">
+<small>By continuing this page, you agree to Terms of Use. All trademarks are property of their respective owners. © 2014 -LookPlex™ Media Private Ltd. All rights reserved.</small>
+</div>
+
+
+
+
+</body>
+<script type="text/template" id="login-template">
+<div class="wrapper clearfix">
+
+<form class="login-form" style="margin:150px auto;height:200px; width:40%;">
+<h4 class="gray">Log In </h4>
+<div class="form-group clearfix">
+<input type="text" placeholder="Email*"  class="form-control">
+</div>
+<div class="form-group clearfix">
+<input class="form-control" type="password" placeholder="Password*">
+</div>
+<input class="btn btn-danger" type="button" value="Submit"><label class="label label-warning pull-right"></label> 
+</form>
+</div>
+
+</script>
+<script type="text/template" id="sar-list-template">
+<div class="wrapper">
+<div class="list-group sar-list">
+  <% _.each(datas,function(data){%>
+        <div class="list-group-item" data-id="<%= data.id %>"><h4><%=data.storename%></h4></div>        
+  <%})%>
+</div>
+</div>
+</script>
+
+<script type="text/javascript" src="https://static.lookplex.com/js/3.5/lookplexAdminBackbone.js"></script>
+<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBkRzmfedoJ2knAFsyxdhH5AuW41ljbu6E&sensor=false'></script>
+</html>

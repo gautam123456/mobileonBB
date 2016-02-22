@@ -1,0 +1,36 @@
+<script type="text/template" id="user-profile-template">
+    <div class="container-fluid">
+        <div class="wrapper">
+            <div class="row profile-holder">
+                <div class="col-md-3 profile-left-column">
+                    <div class="user-profile-header">
+                        <img class="img-circle" src="<%=$user.image%>" style="min-height: 100px;min-width: 100px">
+                        <h3><%=$user.displayName%></h3>
+                    </div>
+                    <ul class="list-group user-profile-menu">
+                        <input id="prof" type="radio" name="etype0" value="" class="visuallyhidden" checked="checked">
+                        <label for="prof" class="list-group-item user-menu-item" id="user-menu-profile"><i class="fa fa-user-md"></i>&nbsp;&nbsp;My Profile<i class="pull-right fa fa-angle-right"></i></label>
+                        <input id="journey" type="radio" name="etype0" value="" class="visuallyhidden">
+                        <label for="journey" class="list-group-item user-menu-item" id="user-menu-lookplex-journey"><i class="fa fa-globe"></i>&nbsp;&nbsp;LookPlex Journey<i class="pull-right fa fa-angle-right"></i></label>
+                        <input id="rating" type="radio" name="etype0" value="" class="visuallyhidden">
+                        <label for="rating" class="list-group-item user-menu-item" id="user-menu-ratings"><i class="fa fa-star-o"></i>&nbsp;&nbsp;Ratings<i class="pull-right fa fa-angle-right"></i></label>
+                        <input id="reviews" type="radio" name="etype0" value="" class="visuallyhidden">
+                        <label for="reviews" class="list-group-item user-menu-item" id="user-menu-reviews"><i class="fa fa-comment-o"></i>&nbsp;&nbsp;Reviews<i class="pull-right fa fa-angle-right"></i></label>
+                        <input id="bookmarks" type="radio" name="etype0" value="" class="visuallyhidden">
+                        <label for="bookmarks" class="list-group-item user-menu-item" id="user-menu-bookmarks"><i class="fa fa-bookmark-o"></i>&nbsp;&nbsp;Bookmarks<i class="pull-right fa fa-angle-right"></i></label>
+                        <input id="checkins" type="radio" name="etype0" value="" class="visuallyhidden">
+                        <label for="checkins" class="list-group-item user-menu-item" id="user-menu-checkins"><i class="fa fa-check-circle-o"></i>&nbsp;&nbsp;Check Ins<i class="pull-right fa fa-angle-right"></i></label>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-content">
+
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+</script>
+

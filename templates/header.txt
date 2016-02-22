@@ -1,0 +1,9 @@
+<script type="text/template" id="header-template">
+<div class="wrapper">
+<a href="index.html" class="logo"><img src="https://static.lookplex.com/images/1.2/logo.png"></a>
+<form class="form-inline search-bar search-bar-top">
+  <div class="form-group"><input type="text" class="form-control  no-rb" id="location" placeholder="Search by city, landmark, colony" \></div><div class="form-group"><input type="text" class="form-control  no-lb" id="service" placeholder="Select your service"></div><button type="submit" class="btn">Search</button>
+</form>
+<div class="top-menu pull-right"><a href="#"  data-target="#login">How It Works</a><a href="#"  data-target="#login">Log In</a><a href="#"  data-target="#signup">Sign Up</a><a href="#"   data-target="#faq">Help</a></div>
+</div>
+</script>

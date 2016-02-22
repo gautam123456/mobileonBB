@@ -1,0 +1,120 @@
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Log In</h4>
+      </div>
+      <div class="modal-body">
+	<button type="button" id="facebook" class="form-control btn login-btn" ><i class="fa fa-facebook pull-left"></i>Log In with Facebook</button>
+  <button type="button" id="googleplus" class="form-control btn login-btn" ><i class="fa fa-google-plus pull-left"></i>Log In with Google</button>
+  <button class="g-signin"
+          data-scope="email"
+          data-clientid="243398401944-tgsrb8ufojamhlgdh22pas9hluc29mgb.apps.googleusercontent.com"
+          data-callback="onSignInCallback"
+          data-theme="dark"
+          data-cookiepolicy="single_host_origin">
+      </button>
+  <span class="line"></span>
+	<!--<small class="or">or</small>
+<form class="login form">
+  <div class="form-group">
+  	<div class="input-group">
+     	<input type="email" class="form-control" placeholder="Email">
+    	<div class="input-group-addon">@</div>
+    </div>    
+  </div>
+  <div class="form-group">
+  <div class="input-group">
+    	<input type="password" class="form-control" placeholder="Password">
+  		<div class="input-group-addon glyphicon glyphicon-lock"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label><input type="checkbox">Remember Me</label>
+    <a href="#" class="pull-right"><small>Forgot Password?</small></a>
+  </div>s
+ 
+  <button type="submit" class="btn" id="submit">Log In</button>
+</form>
+<small>Don't have an account? <a href="#" class="modal-inner-link" data-target="#signup">Sign Up</a></small>
+-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Sign Up</h4>
+      </div>
+      <div class="modal-body">
+	<button type="button" id="facebook" class="form-control btn" ><i class="fa fa-facebook pull-left"></i>Sign Up with Facebook</button>
+    <button type="button" id="googleplus" class="form-control btn" ><i class="fa fa-google-plus pull-left"></i>Sign Up with Google</button>
+	<!-- <span class="line"></span>
+	<small class="or">or</small>
+<form class="login form">
+  <div class="form-group">
+  	<div class="input-group">
+     	<input type="text" class="form-control" placeholder="First Name">
+    	<div class="input-group-addon glyphicon glyphicon-user"></div>
+    </div>    
+  </div>
+  <div class="form-group">
+  	<div class="input-group">
+     	<input type="text" class="form-control" placeholder="Last Name">
+    	<div class="input-group-addon glyphicon glyphicon-user"></div>
+    </div>    
+  </div>
+  
+  <div class="form-group">
+  	<div class="input-group">
+     	<input type="email" class="form-control" placeholder="Email">
+    	<div class="input-group-addon">@</div>
+    </div>    
+  </div>
+  <div class="form-group">
+  <div class="input-group">
+    	<input type="password" class="form-control" placeholder="Password">
+  		<div class="input-group-addon glyphicon glyphicon-lock"></div>
+    </div>
+  </div>
+  <div class="form-group">
+  <div class="input-group">
+    	<input type="password" class="form-control" placeholder="Confirm Password">
+  		<div class="input-group-addon glyphicon glyphicon-lock"></div>
+    </div>
+  </div>	
+  <button type="submit" class="btn" id="submit">Sign Up with Email</button>-->
+</form>
+<small>Already have an account? <a href="#" class="modal-inner-link" data-target="#login">Log In</a></small>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <center><h4 class="modal-title" id="modalLabel">Frequently Asked Questions</h4></center>
+        <br>
+      </div>
+      <div class="modal-body">
+<ul class="nav nav-tabs faq-menu">
+  <li role="presentation" class="active"><a href="#">Faq 1</a></li>
+  <li role="presentation"><a href="#">Faq 2</a></li>
+  <li role="presentation"><a href="#">Faq 3</a></li>
+</ul>
+      </div>
+    </div>
+  </div>
+</div>
