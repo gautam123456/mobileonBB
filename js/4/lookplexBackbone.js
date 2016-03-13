@@ -628,7 +628,7 @@ var SearchView=Backbone.View.extend({
         var html=temp({qo:$qo});
         this.$el.html(html).trigger("create");
         $('#filter2').removeClass('hidden');
-        renderstoreItemView(1);
+        renderstoreItemView($qo.pageid);
         $.ajax({
             url:$ROOT_URL+"/getbrandaminityList",
             type:'POST',
@@ -644,7 +644,7 @@ var SearchView=Backbone.View.extend({
             success:function(data){
                 $(".sub-filter:eq(1)").empty();
                 $.each(data.brandlist,function(index,item){
-                    $(".sub-filter:eq(1)").append("<label class='tocontinue'><input class=\" fi-menu brandname\" type=\"checkbox\" multiple name=\"brand[]\" value=\""+item.id+"\">"+item.brandName+"</label>");
+                    $(".sub-filter:eq(1)").append("<label class='tocontinue'><input class=\"fi-menu brandname\" type=\"checkbox\" multiple name=\"brand[]\" value=\""+item.id+"\">"+item.brandName+"</label>");
                 });
                 showFilters();
             },
@@ -670,28 +670,12 @@ var SearchView=Backbone.View.extend({
         router.navigate("#/stores/"+$qo.blockname+"-"+$qo.blockid+"-"+$qo.blockguid+"-"+uri);
     },
     next:function(e){
+        $qo.isFiltered=1;
         router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-" + (parseInt($qo.pageid) + 1));
     },
     prev:function(e){
+        $qo.isFiltered=1;
         router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-" + (parseInt($qo.pageid) - 1));
-    },
-    brandsearch:function(){
-        $queryNew=$("#brandsearch").val();
-        $("#brandsearch").on("keyup",function(e){
-            $(".tocontinue").removeClass("hidden");
-            $queryNew=$("#brandsearch").val();
-                    if($queryNew.length>1){
-                        $('.tocontinue').each(function(){
-                            if($(this).text().toString().toLowerCase().search($queryNew.toString().toLowerCase())>-1){
-                            }else{
-                               $(this).addClass("hidden");
-                            }
-                        });
-                    }
-                    else{
-                        $(".tocontinue").removeClass("hidden");
-                    }
-        });
     }
 
 });
@@ -1000,7 +984,7 @@ var Workspace = Backbone.Router.extend({
         //TODO Views needs to be added
         new HeaderView().render();
         new SponsoredServiceView({qo:$qo}).render();
-        $datas={cityid:$qo.cityid,catids:$qo.catid ,sortby:"none",cityguid:$qo.cityguid,startindex:1,endindex:$qo.pagesize};
+        $datas={cityid:$qo.cityid,catids:$qo.catid ,sortby:$qo.sortby,cityguid:$qo.cityguid,startindex:1,endindex:$qo.pagesize};
         var sponsoredStores=new SponsoredCollection();
         sponsoredStores.fetch({
             data:$datas,
@@ -1081,13 +1065,16 @@ var Workspace = Backbone.Router.extend({
         }else if($qo.catid==14){
             $qo.catid="12,14";
         }
+        $qo.sortby=$("input[name=sort]:checked").val();
+        if(typeof $qo.sortby === 'undefined'){
+            $qo.sortby="none";
+        };
         if($qo.isFiltered==1){
-            $datas={ blockid: $qo.blockid, blockguid: $qo.blockguid, catid: $qo.catid,brandname:$qo.brandname,aminities:$qo.morefilters,startindex: (($qo.pageid - 1) * $qo.pagesize ) + 1 ,endindex: $qo.pageid * $qo.pagesize};
+            $datas={ blockid: $qo.blockid, blockguid: $qo.blockguid,sortby: $qo.sortby, catid: $qo.catid,brandname:$qo.brandname,aminities:$qo.morefilters,startindex: (($qo.pageid - 1) * $qo.pagesize ) + 1 ,endindex: $qo.pageid * $qo.pagesize};
         }
         else{
-            $datas={ blockid: $qo.blockid, blockguid: $qo.blockguid, catid: $qo.catid, sortby: "none",startindex: (($qo.pageid - 1) * $qo.pagesize ) + 1 ,endindex: $qo.pageid * $qo.pagesize};
+            $datas={ blockid: $qo.blockid, blockguid: $qo.blockguid, catid: $qo.catid, sortby: $qo.sortby,startindex: (($qo.pageid - 1) * $qo.pagesize ) + 1 ,endindex: $qo.pageid * $qo.pagesize};
         }
-        console.log(JSON.stringify($datas));
         new HeaderView().render();
         var searchView=new SearchView({qo:$qo});
         searchView.render();

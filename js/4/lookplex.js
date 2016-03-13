@@ -199,6 +199,35 @@ $(document).ready(function(e) {
         }
     });
 
+    $('#closegallery').click(function(e){
+        setTimeout(function(){
+            $('body').css('overflow','scroll');
+        }, 1000);
+    })
+
+    $('#blueimp-gallery').click(function(e){
+        setTimeout(function(){
+            $('body').css('overflow','scroll');
+        }, 1000);
+    })
+
+    $("#brandsearch").on("keyup",function(e){
+        $queryNew=$("#brandsearch").val();
+        $(".tocontinue").removeClass("hidden");
+        $queryNew=$("#brandsearch").val();
+        if($queryNew.length>1){
+            $('.tocontinue').each(function(){
+                if($(this).text().toString().toLowerCase().search($queryNew.toString().toLowerCase())>-1){
+                }else{
+                    $(this).addClass("hidden");
+                }
+            });
+        }
+        else{
+            $(".tocontinue").removeClass("hidden");
+        }
+    });
+
     $("#applyfilter").click(function(e){
         $qo.aminities=[];
         $qo.brandname=$(".brandname:checked").map(function(){ return this.value; }).get().join(',');
