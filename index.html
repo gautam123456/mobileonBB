@@ -1,29 +1,36 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <meta property="og:title" content="Lets look new today" />
-    <meta property="og:image" content="https://static.lookplex.com/images/1.2/forshare.jpg" />
-    <meta property="og:description" content="@ LookPlex, we want to inspire people to express their beauty in every way, every day.
-                                            Our company has been growing at a phenomenal rate, helping us to reach more people, and letting us partner with more salons,spas,gyms,artists than ever.
-                                            It means we can give people more choice and confidence to try new things. Watchout for surprises in coming days.." />
+    <meta property="og:title" content="LETS LOOK NEW TODAY!" />
+    <meta property="og:image" content="**STORE-COVER-URL**" />
+    <meta property="og:description" content="**STORE_DESCRIPTION**" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LookPlex - Spa, Salon, Gym, Makeup Artists, Slimming & Cosmetology, Dietitian, Tattoo, Piercing, Nail Art, Mehendi, Beauty Wellness Delhi NCR | Gurgaon | Noida</title>
+    <title>**Store Name**</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/lookplex.css" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet'>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css" rel="stylesheet">
+    <link href="css/3/lookplex.css" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://static.lookplex.com/js/1.4/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone-min.js" ></script>
-    <script src="js/lookplex.js"></script>
+    <script src="js/4/lookplex.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src = "//plus.google.com/js/client:platform.js" async defer></script>
-
 </head>
 
-<body style="font-family: Lato">
+<body style="font-family: Lato;background-color:#f5f5f5;overflow-y: scroll;overflow-x: hidden">
 <!-- Google Tag Manager -->
+<div id="blueimp-gallery" class="blueimp-gallery" data-use-bootstrap-modal="false">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <div class="options" style="background-color: #000">
+        <div class="prev pull left" style="margin-top: -15px;margin-left: 20px;font-size: 50px">‹</div>
+        <div class="next pull-right" style="margin-top: -15px;margin-right: 20px;font-size: 50px">›</div>
+        <center><div id="closegallery" class="close" style="margin: -55px 47%;color: #fff;font-size: 40px">×</div></center>
+    </div>
+</div>
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N6FSQJ"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -33,49 +40,270 @@
 })(window,document,'script','dataLayer','GTM-N6FSQJ');</script>
 <!-- End Google Tag Manager -->
 <div class="modal modal-fullscreen fade" id="modal-search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="height: 100%">
-    <div class="modal-dialog" style="margin: 0;height: 100%;">
-        <div class="modal-content" style="border-radius: 0;height: 100%;padding-bottom: 30px">
-            <div class="modal-header grey-bg" style="background-color: #edefed;color: #565a5c">
+    <div class="modal-dialog" style="margin: 0;height: 130%;">
+        <div class="modal-content" style="border-radius: 0;padding-bottom: 30px">
+            <div class="modal-header grey-bg">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <center><h4 class="modal-title" id="myModalLabel">Search</h4></center>
             </div>
             <div class="modal-body">
+                <div class="sub-filter" style="height: 50px;width:100%;margin-bottom: 20px;margin-top: 20px;text-align: center;border: 1px solid #ff6666;border-radius: 4px">
+                    <!--<div class="" style="color: #f2f2f2;padding: 0;background-color: transparent">-->
+                    <span class="slider-min-content-new2" style="height: 100%;padding: 2px">
+                    <input class="f-menu visuallyhidden" id="loc" type="radio" name="searchtype" value="1" checked="checked"><label for="loc" class="links col-xs-5" style="border-radius: 2px 0 0 2px;margin: 0;font-size: 13px;border: 1px solid #ff6666;width: 49%">Search by Location</label>
+                    <input class="f-menu visuallyhidden" id="sto" type="radio" name="searchtype" value="2"><label for="sto" class="links col-xs-5 pull-right" style="border-radius:0 2px 2px 0;margin: 0;font-size:13px;border: 1px solid #ff6666;width: 50%">Search by Store Name</label>
+                    </span>
+                   <!-- </div>-->
+                </div>
                 <div id="location" class="form-group smfg" style="margin-bottom: 3px">
                     <i id="wait" class="fa fa-circle-o-notch fa-spin hidden" style="position:absolute; right: 15px"></i>
                     <i class="fa fa-map-marker pull-left"></i>
-                    <input class="form-control location" id="ilocation" type="text" placeholder="Search by city, landmark or colony" autofocus></input>
+                    <i class="fa fa-times pull-right hidden" id="discardSearch" style="right:15px"></i>
+                    <input class="form-control location" id="ilocation" type="text" placeholder="Enter area, landmark or colony" autofocus>
                 </div>
                 <div class="list-group location-suggestion">
                 </div>
                 <div class="form-group smfg" style="margin-bottom: 3px">
-                    <input class="form-control" id="catinput" type="text" placeholder="Select your service"></input>
+                    <input class="form-control" id="catinput" type="text" placeholder="Select your service">
                 </div>
-                <div class="list-group categories-list hidden" style="display: block;">
-                    <div class="list-group-item" data-catid="1">Spa</div>
-                    <div class="list-group-item" data-catid="2">Salon</div>
-                    <div class="list-group-item" data-catid="3">Gym</div>
-                    <div class="list-group-item" data-catid="8">Makeup Artists</div>
-                    <div class="list-group-item" data-catid="6">Slimming &amp; Cosmetology</div>
-                    <div class="list-group-item" data-catid="9">Dietitians &amp; Nutritionists</div>
-                    <div class="list-group-item" data-catid="14">Tattoo &amp; Piercing</div>
-                    <div class="list-group-item" data-catid="10">Yoga &amp; Aerobics</div>
-                    <div class="list-group-item" data-catid="11">Nail Art</div>
-                    <div class="list-group-item" data-catid="13">Mehendi</div>
+                <div class="list-group categories-list hidden">
+                    <div class="list-group-item cat" data-catid="1">Spa</div>
+                    <div class="list-group-item cat" data-catid="2">Salon</div>
+                    <div class="list-group-item cat" data-catid="3">Gym</div>
+                    <div class="list-group-item cat" data-catid="8">Makeup Artists</div>
+                    <div class="list-group-item cat" data-catid="6">Slimming &amp; Cosmetology</div>
+                    <div class="list-group-item cat" data-catid="9">Dietitians &amp; Nutritionists</div>
+                    <div class="list-group-item cat" data-catid="14">Tattoo &amp; Piercing</div>
+                    <div class="list-group-item cat" data-catid="10">Yoga &amp; Aerobics</div>
+                    <div class="list-group-item cat" data-catid="11">Nail Art</div>
+                    <div class="list-group-item cat" data-catid="13">Mehendi</div>
                 </div>
-                <button class="btn btn-red form-control" id="search" style="height: 45px;margin-top: 15px"><b>Search</b></button>
+                <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                    <strong>Oh snap!</strong> You forgot to enter one of the fields.<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+                <button class="btn btn-red form-control" id="search" style="height: 45px;margin-top: 15px"><b>SEARCH</b></button>
             </div>
         </div>
     </div>
 </div>
+<div class="modal modal-fullscreen fade" id="modallogin" tabindex="-1" role="dialog" aria-hidden="true" class="loginmodal">
+    <div class="modal-dialog" style="height: 100%">
+        <div class="modal-content">
+            <div class="modal-header grey-bg" style="border: none;min-height: 50px"> Log In
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12" style="padding: 5px 15px 15px 15px">
+                <center><div style="min-height:300px;width: 300px;padding: 15px;background: url('/images/300.jpg') center no-repeat;background-size: cover"></div></center>
+                </div>
+                <div class="col-xs-12" style="padding: 0 15px 0 15px">
+                    <button type="button" id="facebook" class="form-control btn login-btn"><i
+                            class="fa fa-facebook pull-left"></i>Sign In with Facebook
+                    </button>
+
+                    <!-- <button type="button" id="googleplus" class="form-control btn login-btn" ><i class="fa fa-google-plus pull-left"></i>Log In with Google</button> -->
+                    <button class="g-signin btn form-control" id="googleplus"
+                            data-scope="email"
+                            data-clientid="393978119485-6j14o11ndo58jhnaqhir1lgb4hmvkpih.apps.googleusercontent.com"
+                            data-clienidold="243398401944-tgsrb8ufojamhlgdh22pas9hluc29mgb.apps.googleusercontent.com"
+                            data-callback="onSignInCallback"
+                            data-theme="dark"
+                            data-cookiepolicy="single_host_origin"><i class="fa fa-google-plus pull-left"></i>Sign In with
+                        Google
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <small>By signing in, you agree to Lookplex's <a href=""><b>Terms of Service</b></a> and <a href=""><b>Privacy Policy</b></a></small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="otp" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 100%;height: 100%">
+        <div class="modal-content" style="margin-top: 0 !important;height: 100%">
+            <div class="col-xs-12" style="min-height: 300px;background-color: #fff">
+                <div class="modal-header" style="border: none;height: 10%;margin: 5px 0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span id="discardr" aria-hidden="true" style="font-size: 40px">&times;</span>
+                    </button>
+                    <div class="col-xs-12" style="padding: 0;font-size: 12px">
+                        <div class="col-xs-4 activestep num1">
+                            <div class="num">1</div>
+                            <div class="service" style="color: #73b5e8">Pick a slot</div>
+                        </div>
+                        <div class="col-xs-4 inactivestep num2">
+                            <div class="num">2</div>
+                            <div>Fill your details</div>
+                        </div>
+                        <div class="col-xs-4 inactivestep num3">
+                            <div class="num">3</div>
+                            <div>Confirm Booking</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" style="min-height: 50%;padding: 10px 0 10px 0;">
+                    <div class="modal-body" style="padding: 5px">
+                        <div class="col-xs-12" style="height: 16%;border-bottom: 1px solid #c0c0c0"></div>
+                        <div class="col-xs-12 errormsg hidden" id="otpmsg" style="text-align: center;font-weight: bolder;margin-top: 10px">All fields are manadatory, please provide</div>
+                        <div class="col-xs-12" id="otpview" style="padding: 0">
+
+                        </div>
+
+                        <div class="col-xs-12" style="margin-top: 20px">
+                            <div class="pull-right col-xs-4">
+                                <button id="nbooking" type="submit" class="btn default-btn col-xs-12" value="1" style="background-image: none;margin-top: 25px;font-weight: bolder;font-size: 16px">
+                                    <span>Next</span>
+                                </button>
+                            </div>
+                            <div class="pull-right col-xs-4">
+                                <button id="cbooking" type="submit" class="btn default-btn col-xs-12" style="background-image: none;margin-top: 25px;font-weight: bolder;font-size: 16px">
+                                    <span>Clear</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-fullscreen fade" id="filter" tabindex="-1" role="dialog" aria-hidden="true" class="loginmodal">
+    <div class="modal-dialog" style="margin:0 0 0 20%">
+        <div class="modal-content" style="border-radius: 0;min-height: 1220px;padding: 10px">
+            <div class="modal-header grey-bg" style="border: none;min-height: 50px"> Filters
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span></span></button>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-9" style="padding: 0">
+                    <div id="leftfilter" class="filter" style="padding-right: 0;padding-left: 3px;width: 202px">
+                        <div class="filter-menu">
+                            <h5 style="padding-right:10px">Sort By</h5>
+                            <div class="sub-filter">
+                                <label><input class="fi-menu" type="radio" name="sort" value="popularity">Popularity - High to Low </label>
+                                <label><input class="fi-menu" type="radio" name="sort" value="rating">Rating - High to Low</label>
+                            </div>
+                            <h5 style="padding-right:10px">Brand </h5>
+                            <div style="border: solid 1px #ddd;padding: 2px"><i class="fa fa-search" style="color: #828282"></i><input type="textarea" placeholder="Search brand" style="width: 170px;color: #828282;padding-left: 3px;border: none" id="brandsearch"></div>
+                            <div class="sub-filter" id="brands" style="overflow-y: scroll; max-height: 250px; min-height: 100px">
+                            </div>
+                        </div>
+                        <div class="filter-menu">
+                            <h5 style="padding-right:10px">Gender</h5>
+                            <div class="sub-filter">
+                                <label><input class="fi-menu" type="radio" name="gender" value="1">Men</label>
+                                <label><input class="fi-menu" type="radio" name="gender" value="2">Women</label>
+                                <label><input class="fi-menu" type="radio" name="gender" value="1,2">Unisex</label>
+                            </div>
+                        </div>
+                        <div class="filter-menu">
+                            <h5 style="padding-right:10px">Offers</h5>
+                            <div class="sub-filter" style="overflow-y: scroll;max-height: 170px">
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='15'>Upto 10% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='16'>Upto 20% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='17'>Upto 30% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='18'>Upto 40% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='19'>Upto 50% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='20'>Upto 60% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='21'>Upto 70% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='22'>Upto 80% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='23'>Upto 90% Off</label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='24'>Upto 100% Off</label>
+                            </div>
+                        </div>
+                        <div class="filter-menu">
+                            <h5 style="padding-right:10px">More filters</h5>
+
+                            <div class="sub-filter">
+                                <label style="display: inline-block">
+                                    <input type="checkbox" class="fi-menu more-filters" name="more-filters" value='4'>Open Today
+                                </label>
+                                <div style="display: inline-block;width: 60px"></div>
+                                <!--<div class="showdays" style="margin-left: 40px"><u>edit</u></div>-->
+                            <span class="weekdays">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <label>
+                                <input type="checkbox" name="monday" id="monday" value="8" class="fi-menu more-filters">
+                                <label for="monday" class="weekday" style="margin-bottom: 0">M</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="tuesday" id="tuesday" value="9" class="fi-menu more-filters">
+                                <label for="tuesday" class="weekday" style="margin-bottom: 0">T</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="wednesday" id="wednesday" value="10" class="fi-menu more-filters">
+                                <label for="wednesday" class="weekday" style="margin-bottom: 0">W</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="thursday" id="thursday" value="11" class="fi-menu more-filters">
+                                <label for="thursday" class="weekday" style="margin-bottom: 0">T</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="friday" id="friday" value="12" class="fi-menu more-filters">
+                                <label for="friday" class="weekday" style="margin-bottom: 0">F</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="saturday" id="saturday" value="13" class="fi-menu more-filters">
+                                <label for="saturday" class="weekday" style="margin-bottom: 0">S</label>
+                            </label>
+                            <label>
+                                <input type="checkbox" name="sunday" id="sunday" value="14" class="fi-menu more-filters">
+                                <label for="sunday" class="weekday" style="margin-bottom: 0">S</label>
+                            </label>
+                            </span>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='7'>Doorstep Services<i class="fa fa-home pull-right"></i></label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='5'>Credit/Debit Card<i class="fa fa-credit-card pull-right"></i></label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='6'>Air Conditioned<i class="fa fa-asterisk pull-right"></i></label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='4'>Wi-fi Available<i class="fa fa-wifi pull-right"></i></label>
+                                <label style="padding-right:10px"><input type="checkbox" class="fi-menu more-filters" name="more-filters" value='3'>Parking Available<i class="fa fa-car pull-right"></i></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12" style="margin-top: 20px">
+                <button id="applyfilter" type="button" class="btn default-btn pull-left">Apply Filter</button>
+                <button id="clearfilter" type="button" class="btn default-btn pull-right">Clear Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-fullscreen fade" id="modalhiw" tabindex="-1" role="dialog" aria-hidden="true" class="loginmodal">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: transparent">
+            <div class="modal-header grey-bg" style="border: none;min-height: 50px;opacity: 0.3"> How it Works !
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" style="color: #000;font-weight: bolder">&times;</span><span></span></button>
+            </div>
+            <div class="modal-body">
+                    <div class="col-md-12 hiw" style="background-image:url(images/hiw.svg);height: 250px;width: 150px;"></div>
+                    <div class="hiw-details col-md-12">
+                        <h4>Search</h4>
+                        <p>Discover the Beauty, Wellness and Fitness destinations around you.</p>
+                    </div>
+                    <div class="col-md-12 hiw" style="background-image:url(images/hiw.svg);height: 250px;width: 350px;background-position-x: -250px;"></div>
+                    <div class="hiw-details col-md-12">
+                        <h4>Visit</h4>
+                        <p>Visit the grooming centers of your choice to find your best self again.</p>
+                    </div>
+                    <div class="col-md-12 hiw" style="background-image:url(images/hiw.svg);height: 250px;width: 318px;background-position: -680px 3px;"></div>
+                    <div class="hiw-details col-md-12">
+                        <h4>Rate & Review</h4>
+                        <p>Rate, review and share your look experiences in your social circles.</p>
+                    </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="overlay">
     <div class="circle-outer fa-spin"></div>
 </div>
 <div class="header">
-    <div class="navbar navbar-default" style="min-height: 50px;border: none;text-align: center;margin: 0">
-        <div class="col-xs-2" style="padding:3% 6% 0 0"><i class="pull-right fa fa-bars fa-2x thmcolor"></i></div>
-        <div class="col-xs-8" style="background: url('images/logo.png') center no-repeat;background-size: contain;min-height: 50px"></div>
-        <div class="col-xs-2" style=""></div>
-    </div>
+
 </div>
 <div class="full-container" style="margin-bottom: 10px">
 
@@ -84,369 +312,102 @@
 <div class="footer" style="margin-top: 50px">
 
 </div>
+
 </body>
+<script type="text/template" id="usermenue">
+    <span role="presentation"><div role="menuitem" style="background: url('<%=user.image%>') no-repeat center;background-size: contain;height: 40px;width: 40px;margin-left: 50px;border-radius: 20px"></div></span>
+    <span role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1"><%=user.displayName%></a></span>
+    <li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/profile">My Profile</a></li>
+    <!--<li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/journey">My Journey</a></li>
+    <li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/ratings">Ratings</a></li>
+    <li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/reviews">Reviews</a></li>
+    <li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/bookmarks">Bookmarks</a></li>
+    <li role="presentation" style="padding: 10px"><a role="menuitem" tabindex="-1" href="#/checkins">Check Ins</a></li>-->
+    <li role="presentation" style="padding: 10px"><a role="menuitem" id="logout">Log Out</a></li>
+</script>
 <script type="text/template" id="footer">
         <div>
             <ul class="footer-list">
-                <li><a href="/aboutus" >About us</a> </li>
-                <li><a href="" >Contact us</a> </li>
-                <li><a href="" >Free Listing</a> </li>
-                <li><a href="" >Advertise</a> </li>
-                <li><a href="" >Privacy</a> </li>
-                <li><a href="" >Terms of Service</a> </li>
+                <div class="col-xs-12" style="height: 20px"></div>
+                <li><a href="#/about" >About us</a> </li>
+                <li><a href="#/contactus" >Contact us</a> </li>
+                <li><a href="#/freelisting" >Free Listing</a> </li>
+                <li><a href="#/advertise" >Advertise</a> </li>
+                <li><a href="#/privacypolicy" >Privacy</a> </li>
+                <li><a href="#/termsofservice" >Terms of Service</a> </li>
+                <li><a href="http://blogs.lookplex.com" >Lookplex Blog</a> </li>
             </ul>
         </div>
         <div class="clearfix fs" style="background-color: #000">
             <a href="https://facebook.com/LookPlex" class="fs-item"><i class="fa fa-facebook "></i> </a>
             <a href="https://twitter.com/lookplex" class="fs-item"><i class="fa fa-twitter "></i></a>
-            <a href="" class="fs-item"><i class="fa fa-pinterest "></i></a>
-            <a href="https://lookplex.com/#" class="fs-item"><i class="fa fa-instagram "></i></a>
+            <a href="https://in.pinterest.com/lookplex/" class="fs-item"><i class="fa fa-pinterest "></i></a>
+            <a href="https://www.instagram.com/lookplex/" class="fs-item"><i class="fa fa-instagram "></i></a>
             <a href="https://plus.google.com/104895346847255000908" class="fs-item"><i class="fa fa-google-plus "></i></a>
         </div>
         <span class="copyright">&copy; Lookplex.com</span>
 </script>
-<script type="text/template" id="home">
-    <div class="jumbotron">
-        <h2>Let's Look New Today</h2>
-        <span style="color: #fff">Salon.Spa.Gym.Makeup Artists.Slimming.Dieticians.Yoga.Nail Art.Tattoo.Piercing.Mehendi</span>
-        <div class="" style="margin: 0 20px 0 20px">
-            <div class="form-group col-xs-12" id="search-bar" tabindex="-1" data-toggle="modal" data-target="#modal-search" style="padding: 0">
-                <button class="btn pull-right" style="background-color: #ff6666;color: #fff;z-index: 2"><i class="fa fa-search "></i></button>
-                <input type="search" id="ui" class="form-control" placeholder="Search grooming services near you">
-            </div>
-        </div>
-    </div>
-    <section class="col-b">
-        <div class="header">
-            <h4>&#9866;&nbsp; Hand Picked for You &nbsp;&#9866;</h4>
-            We pioneer in art profession. You'll just love to get pampered by us.
-        </div>
-    </section>
-    <section class="col-c">
-        <div class="image-container" style="background: url('images/mobilepic/salon.jpg') center no-repeat;background-size: cover">
-            <div class="gr-mask">
-                <h4>Cut Above the Rest</h4>
-            </div>
-        </div>
-        <h4>Salon</h4>
-    </section>
-    <section class="col-c">
-        <div class="image-container" style="background: url('images/mobilepic/spa.jpg') center no-repeat;background-size: cover">
-            <div class="gr-mask">
-                <h4>Time waits here</h4>
-            </div>
-        </div>
-        <h4>Spa</h4>
-    </section>
-    <section class="col-c">
-        <div class="image-container" style="background: url('images/mobilepic/gym.jpg') center no-repeat;background-size: cover">
-            <div class="gr-mask">
-                <h4>Shape up. Build up</h4>
-            </div>
-        </div>
-        <h4>Gym</h4>
-    </section>
-    <section class="col-c">
-        <div class="image-container" style="background: url('images/mobilepic/ma.jpg') center no-repeat;background-size: cover">
-            <div class="gr-mask">
-                <h4>The Eye Candy</h4>
-            </div>
-        </div>
-        <h4>Makeup Artist</h4>
-    </section>
-    <div id="tohide">
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/nail.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>Cult in the making</h4>
-                </div>
-            </div>
-            <h4>Nail Art</h4>
-        </section>
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/fa.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>Your look has come</h4>
-                </div>
-            </div>
-            <h4>Slimming & Cosmetology</h4>
-        </section>
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/dietician.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>Eat Right Look Bright</h4>
-                </div>
-            </div>
-            <h4>Dieticians & Nutritionists</h4>
-        </section>
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/tattoo.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>Art the body</h4>
-                </div>
-            </div>
-            <h4>Tattoo & Piercing</h4>
-        </section>
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/yoga.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>Fitness with peace</h4>
-                </div>
-            </div>
-            <h4>Yoga & Aerobics</h4>
-        </section>
-        <section class="col-c">
-            <div class="image-container" style="background: url('images/mobilepic/me.jpg') center no-repeat;background-size: cover">
-                <div class="gr-mask">
-                    <h4>The classy traditional</h4>
-                </div>
-            </div>
-            <h4>Mehendi</h4>
-        </section>
-    </div>
-    <div style="text-align: center">
-        <button id="moreservice" type="button" class="btn default-btn">See More</button>
-    </div>
 
-
-    <section class="col-b" id="popular">
-        <div class="header">
-            <h4>&#9866;&nbsp; Popular in Town &nbsp;&#9866;</h4>
-        </div>
-        <div class="body">
-            A collection of establishments offering world class services in your neighbourhood
-        </div>
-    </section>
-    <section class="col-c" style="margin:10px 0 0 0">
-        <div class="image-container" style="background: url('images/mobilepic/ed.jpg') center no-repeat;background-size: cover">
-            <div class="mask">
-                <h4>East Delhi</h4>
-            </div>
-        </div>
-    </section>
-    <section class="col-c" style="margin:10px 0 0 0">
-        <div class="image-container" style="background: url('images/mobilepic/wd.jpg') center no-repeat;background-size: cover">
-            <div class="mask">
-                <h4>West Delhi</h4>
-            </div>
-        </div>
-    </section>
-    <section class="col-c" style="margin:10px 0 0 0">
-        <div class="image-container" style="background: url('images/mobilepic/nd.jpg') center no-repeat;background-size: cover">
-            <div class="mask">
-                <h4>North Delhi</h4>
-            </div>
-        </div>
-    </section>
-    <section class="col-c" style="margin:10px 0 0 0">
-        <div class="image-container" style="background: url('images/mobilepic/sd.jpg') center no-repeat;background-size: cover">
-            <div class="mask">
-                <h4>South Delhi</h4>
-            </div>
-        </div>
-    </section>
-    <div id="tohidecity">
-        <section class="col-c" style="margin:10px 0 0 0">
-            <div class="image-container" style="background: url('images/mobilepic/cd.jpg') center no-repeat;background-size: cover">
-                <div class="mask">
-                    <h4>Central Delhi</h4>
-                </div>
-            </div>
-        </section>
-        <section class="col-c" style="margin:10px 0 0 0">
-            <div class="image-container" style="background: url('images/mobilepic/noi.jpg') center no-repeat;background-size: cover">
-                <div class="mask">
-                    <h4>Noida</h4>
-                </div>
-            </div>
-        </section>
-        <section class="col-c" style="margin:10px 0 0 0">
-            <div class="image-container" style="background: url('images/mobilepic/gg.jpg') center no-repeat;background-size: cover">
-                <div class="mask">
-                    <h4>Gurgaon</h4>
-                </div>
-            </div>
-        </section>
-        <section class="col-c" style="margin:10px 0 0 0">
-            <div class="image-container" style="background: url('images/mobilepic/fb.jpg') center no-repeat;background-size: cover">
-                <div class="mask">
-                    <h4>Faridabad</h4>
-                </div>
-            </div>
-        </section>
-        <section class="col-c" style="margin:10px 0 30px 0">
-            <div class="image-container" style="background: url('images/mobilepic/gb.jpg') center no-repeat;background-size: cover">
-                <div class="mask">
-                    <h4>Ghaziabad</h4>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div style="text-align: center;margin-top: 40px">
-        <button id="morecity" type="button" class="btn default-btn">See More</button>
-    </div>
-</script>
 <script type="text/template" id="header">
-    <div class="navbar navbar-default" style="min-height: 45px;border: none;text-align: center;margin: 0">
-        <div class="col-xs-2" style="padding:5% 6% 0 0"><i class="pull-right fa fa-bars fa-2x thmcolor"></i></div>
-        <div class="form-group col-xs-8" id="search-bar" tabindex="-1" data-toggle="modal" data-target="#modal-search" style="padding: 0;margin-bottom: 12px">
-            <button class="btn pull-right" style="background-color: #ff6666;color: #fff;z-index: 2;margin-top: 10px"><i class="fa fa-search"></i></button>
-            <input type="search" id="ui" class="form-control" placeholder="Search grooming services" style="margin-top: 10px">
+    <div class="navbar navbar-default dropdown" style="min-height: 45px;border: none;text-align: center;margin: 0">
+        <div class="col-xs-2 dropdown-toggle" data-toggle="dropdown" style="padding-top: 12px"><i class="pull-left fa fa-bars fa-2x thmcolor"></i></div>
+        <div class="form-group col-xs-8" id="search-bar0" tabindex="-1" data-toggle="modal" data-target="#modal-search" style="padding: 0;margin-bottom: 12px">
+            <button class="btn pull-right col-xs-2" style="background-color: #ff6666;color: #fff;z-index: 2;margin-top: 10px;;border: 1px solid #ff6666;border-radius: 0 2px 2px 0"><i class="fa fa-search"></i></button>
+            <input type="search" id="ui0" class="form-control col-xs-10" placeholder="Search grooming services" style="margin-top: 10px;width: 83%;border-radius: 2px 0 0 2px">
         </div>
-        <div class="col-xs-2" style="padding:3% 0 0 0;text-align: center">
-            <div class="btn btn-round"><i class="fa fa-filter fa-2x thmcolor"></i></div>
+        <div class="col-xs-8 hidden" id="logo" style="background: url('images/logo.png') center no-repeat;background-size: contain;min-height: 50px"></div>
+        <div class="col-xs-2" style="padding-top: 6px;text-align: center">
+            <div id="filter2" class="btn btn-round pull-right hidden" tabindex="-1" data-toggle="modal" data-target="#filter" style="padding-right: 0"><i class="fa fa-filter fa-2x thmcolor"></i></div>
         </div>
-    </div>
-</script>
-<script type="text/template" id="searchtemplate">
-    <center>
-        <div class="sub-filter" style="height: 52px">
-            <div class="col-xs-12 filter-slider-new" style="opacity: 0.6"><center>
-                    <span class="slider-min-content-new">
-                    <input class="f-menu visuallyhidden" id="salon1" type="radio" name="etype0" value="salon-2,4,5" <% if($qo.catid=="2,4,5"){ %> checked="checked" <%}%> ><label for="salon1" class="links" style="font-size: 13px">Salon</label>
-                    <input class="f-menu visuallyhidden" id="spa1" type="radio" name="etype0" value="spa-1" <% if($qo.catid=="1"){ %> checked="checked" <%}%> ><label for="spa1" class="links" style="font-size: 13px;">Spa</label>
-                    <input class="f-menu visuallyhidden" id="gym1" type="radio" name="etype0" value="gym-3" <% if($qo.catid=="3"){ %> checked="checked" <%}%> ><label for="gym1" class="links" style="font-size: 13px">Gym</label>
-                    <input class="f-menu visuallyhidden" id="makeupartists1" type="radio" name="etype0" value="makeup artists-8" <% if($qo.catid=="8"){ %> checked="checked" <%}%> ><label for="makeupartists1" class="links" style="font-size: 13px">Makeup Artists</label>
-                    <input class="f-menu visuallyhidden" id="slimminandcosmetology1" type="radio" name="etype0" value="slimming & cosmetology-6,7" <% if($qo.catid=="6,7"){ %> checked="checked" <%}%> ><label for="slimminandcosmetology1" class="links" style="font-size: 13px">Slimming & Cosmetology</label>
-                    <input class="f-menu visuallyhidden" id="dietician1" type="radio" name="etype0" value="dieticians & nutritionists-9" <% if($qo.catid=="9"){ %> checked="checked" <%}%> ><label for="dietician1" class="links" style="font-size: 13px">Dieticians & Nutritionists</label>
-                    <input class="f-menu visuallyhidden" id="tatto1" type="radio" name="etype0" value="tattoo & piercing-12,14" <% if($qo.catid=="12,14"){ %> checked="checked" <%}%> ><label for="tatto1" class="links" style="font-size: 13px">Tattoo & Piercing</label>
-                    <input class="f-menu visuallyhidden" id="yoga1" type="radio" name="etype0" value="yoga & aerobics-10" <% if($qo.catid=="10"){ %> checked="checked" <%}%> ><label for="yoga1" class="links" style="font-size: 13px">Yoga & Aerobics</label>
-                    <input class="f-menu visuallyhidden" id="nail1" type="radio" name="etype0" value="nail art-11" <% if($qo.catid=="11"){ %> checked="checked" <%}%> ><label for="nail1" class="links" style="font-size: 13px">Nail Art</label>
-                    <input class="f-menu visuallyhidden" id="mehendi1" type="radio" name="etype0" value="mehendi-13" <% if($qo.catid=="13"){ %> checked="checked" <%}%> ><label for="mehendi1" class="links" style="font-size: 13px">Mehendi</label>
-                    </span></center>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+            <li role="presentation"><a role="menuitem" id="login0" tabindex="-1" data-toggle="modal" data-target="#modallogin">Log In</a></li>
+            <div role="presentation" style="padding: 13px 35px" id="userinfo">
             </div>
-        </div>
-    </center>
-    <div class="col-xs-12" style="padding:3px">
-        <div class="search-result">
-        </div>
+            <li role="presentation" class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Home</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" data-toggle="modal" data-target="#modal-search">Search</a></li>
+            <li role="presentation"><a role="menuitem" id="hiw0" tabindex="-1" data-toggle="modal" data-target="#modalhiw">How it Works</a></li>
+        </ul>
     </div>
 </script>
-<script type="text/template" id="result-item">
-    <% _.each(stores.get('storeList'), function(store){ %>
-    <div class="col-xs-12" style="padding: 0 3px 0 3px;margin-top: 15px">
-        <div class="col-xs-12" style="min-height: 200px;padding:0;background-color: #fff;border-bottom: 1px solid #e0e0e0;">
-            <a class="sponsor" href="#/stores/profile/<%= $qo.blockname%>-<%= $qo.blockguid%>&<%= $qo.catname %>-<%=$qo.catid %>&<%=store.storename%>-<%=store.id %>-<%=store.guid %>">
-                <div class="sponsored-grid"  style="min-height: 155px;margin: 0;padding: 0;border-radius: 2px 2px 0px 0px ;background: url('<%=store.coverUrl%>') center;background-size: cover">
-                    <div class="gr-mask" style="height: 170px;width: 100%;border-radius: 2px 2px 0px 0px">
-                        <div class="col-xs-12" style="height:74px;">
-                                    <span class="pull-right" style=" width: 30px">
-                                        <i class="fa fa-heart" data-toggle="tooltip" title="Bookmark this" style="margin-top: 7px;margin-left: 10px; color: #fafafa; opacity: .6;font-size: 15px" title="Favourite"></i>
-                                    </span>
-                        </div>
-                        <!--<div class="col-md-12" style="height:44px;padding-left: 0px;padding-right: 0px;">-->
-                        <div class="col-xs-12" style="height:27px;padding-left: 5px;padding-right: 0px;">
-                            <div class="col-xs-12" style="margin-top: 2px;padding-left: 0;">
-                                <div style="color: #fafafa; font-size: 13px;max-width: 900px;overflow: hidden;text-overflow: ellipsis">
-                                    <div style="font-weight: bolder;height: 16px;overflow: hidden;text-overflow: ellipsis;margin-bottom: 10px"><%=store.storename%></div>
-                                    <div class="item-aminities">
-                                        <% _.each(store.attributeList.split(","),function(amin){%>
-                                        <% if(amin=="fw") { %><i class="fa fa-female"></i><% } %>
-                                        <% if(amin=="fm") { %><i class="fa fa-male"></i><% } %>
-                                        <% if(amin=="ac") { %><i class="fa fa-asterisk"></i><% } %>
-                                        <% if(amin=="ca") { %><i class="fa fa-credit-card"></i><% } %>
-                                        <% if(amin=="wi") { %><i class="fa fa-wifi"></i><% } %>
-                                        <% if(amin=="xx") { %><i class="fa fa-slack"></i><% } %>
-                                        <% if(amin=="pa") { %><i class="fa fa-car"></i><% } %>
-                                        <%}) %>
-                                    </div>
-                                    <div class="sponsored-grid" style="min-height: 15px;margin: 0;padding-left: 0">
-                                        <p class="item-address" style="width:100%;color: #fff;font-size: 12px">
-                                            <%=rcp(store.categoryList)%>
-                                        </p>
-                                    </div>
-                                    <div style="font-weight: lighter; font-size: 10px;height: 14px;overflow: hidden;margin-bottom: 10px"><%=store.address%></div>
 
-                                </div>
-                            </div>
-                            <div class="col-xs-2" style="height: 100%; position: relative;margin-top: 0">
-                                <!--<div class="item-rating pull-right" style="height: 20px;width: 25px;color: #ffffff;font-size: 12px;font-weight: bolder;font-family: Lato;text-align: center;line-height: 20px"><%if(store.drating!=null){ %><%= store.drating %><%} else{%>5<%}%></div>-->
-                            </div>
-                        </div>
-                        <!--</div>-->
-                    </div>
-                </div>
-            </a>
-
-            <div class="item-menu" style="color: #000;height: 55px;padding-left: 5px;text-align: center" data-value="<%=store.id%>-<%=store.guid%>">
-                <div id="ratecardsdrop"><a>Rate Card</a></div>
-                <div id="photosdrop"><a>Photos</a></div>
-                <div id="reviewsdrop"><a>Reviews</a></div>
-                <div id="trustsdrop"><a>Trust</a></div>
-                <div id="phone" style="background-color: #ff6666;padding: 5px 10px 5px 10px;border: 1px solid #ff6666"><a><i style="color: #fff" class="fa fa-phone"></i></a></div>
-            </div>
-        </div>
-    </div>
-    <%})%>
-    <%if($qo.numberofpages>1){%>
-    <div style="text-align: center;padding-top: 40px">
-        <button id="morestore" type="button" class="btn default-btn">Load More</button>
-    </div>
-    <%}%>
-</script>
 <script type="text/template" id="parlor-profile-template">
 <div class="container-fluid">
-    <!--TODO Add updated coverurl from api returned...-->
-    <div class="parlor-screen" style="background:<% if(data.coverUrl!="" && data.coverUrl!=null ){%>  url(<%= data.coverUrl%>) center; background-repeat:no-repeat; background-size: cover; <%} else{%> #5C5858; <%}%>">
-    <div class="">
-        <div class="">
-            <div class="">
-                <div class="" style="height: 200px">
-                    <div id="storename" class="" style="padding-left: 0px;">
-                        <div class=" pull-left"><%= data.storename %></div>
-                        <div class="item-rating col-md-1 pull-right"><%if(data.totalRatingScore!=null && data.totalRatingScore!=0){ %><%= data.totalRatingScore %><%} else{%>-<%}%></div>
-                    </div>
-                    <div class="pull-left col-md-12" style="margin: 0px;height: 30px;font-size: 17px">
-                        <% $.each(data.attributeList.split(","),function(index,amin){%>
-                        <% if(amin=="fw") { %><span style="margin-right: 10px"><i class="fa fa-female"  data-toggle="tooltip" data-placement="left" title="Female"></i></span><% } %>
-                        <% if(amin=="fm") { %><span style="margin-right: 10px"><i class="fa fa-male" data-toggle="tooltip" data-placement="left" title="Male"></i></span><% } %>
-                        <% if(amin=="ac") { %><span style="margin-right: 10px"><i class="fa fa-asterisk" data-toggle="tooltip" data-placement="left" title="Air Contioned"></i></span><% } %>
-                        <% if(amin=="ca") { %><span style="margin-right: 10px"><i class="fa fa-credit-card" data-toggle="tooltip" data-placement="left" title="Accept Credit/Debit Card"></i></span><% } %>
-                        <% if(amin=="wi") { %><span style="margin-right: 10px"><i class="fa fa-wifi" data-toggle="tooltip" data-placement="left" title="Wifi Enabled"></i></span><% } %>
-                        <% if(amin=="xx") { %><span style="margin-right: 10px"><i class="fa fa-slack" data-toggle="tooltip" data-placement="left" title="Pets Allowed"></i></span><% } %>
-                        <% if(amin=="pa") { %><span style="margin-right: 10px"><i class="fa fa-car" data-toggle="tooltip" data-placement="left" title="Parking Available"></i></span><% } %>
-                        <%}) %>
-                    </div>
-                </div>
-            </div>
-            <div class="screen-menus col-md-12">
-                <div class="screen-menu-rate" id="rate-rev-top"><i class="fa fa-star-o"></i><h5>Rate & Review</h5></div>
-                <div class="screen-menu-bookmark"  id="favourite"><i class="fa fa-bookmark"></i><h5>Favourite</h5></div>
-                <div class="screen-menu-checkin"  id="checkin"><i class="fa fa-check"></i><h5>Check In</h5></div>
-
-                <div class="screen-menu-checkin shareicons" style="margin: 2px 0 0 5px;padding: 0 10px 0 8px;max-height: 40px">
-                    <div id="share" class="screen-menu-checkin" style="margin-right: 0px;display: inline-block"><i class="fa fa-share"></i><h5 style="display: inline-block;margin-left: 5px">Share</h5></div>
-                    <a class="shareit fb hidden" href="http://www.facebook.com/sharer/sharer.php?u=http://snip.ly/PZJD" title="Share on Facebook"
-                       target="_blank" class="btn btn-facebook" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-facebook fa-fw"></i> Facebook</a>
-                    <a class="shareit hidden" href="http://twitter.com/?status=Look at this cool listing at Lookplex?u=http://www.lookplex.com/#/stores/services/gurgaon-WERTHUKUND-1740-salon-2,4,5"
-                       title="Share on Twitter" target="_blank" class="btn btn-twitter" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-twitter fa-fw"></i> Twitter</a>
-                    <a class="shareit gpl hidden" href="https://plus.google.com/share?url=http://www.lookplex.com/#/stores/services/gurgaon-WERTHUKUND-1740-salon-2,4,5" title="Share on Google+"
-                       target="_blank" class="btn btn-googleplus" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-google-plus fa-fw"></i> Google+</a>
-                    <a class="shareit pnt hidden" href="https://plus.google.com/share?url=http://www.lookplex.com/#/stores/services/gurgaon-WERTHUKUND-1740-salon-2,4,5" title="Share on Pinterest"
-                       target="_blank" class="btn btn-googleplus" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-pinterest-p fa-fw"></i> Pinterest</a>
-                    <a class="shareit hidden" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.lookplex.com/#/stores/services/gurgaon-WERTHUKUND-1740-salon-2,4,5&amp;title=Look at this cool collection of services;source=Brandon Himpfen" title="Share on LinkedIn"
-                       target="_blank" class="btn btn-linkedin" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-linkedin fa-fw"></i> LinkedIn</a>
-                    <a class="shareit hidden" href="mailto:?subject=LookPlex | Hey Check out this awesome Listing on Lookplex.&amp;body=How-to%20Colour%20and%20Size%20Facebook%20Like%20Buttons:https://www.lookplex.com//"
-                       title="Share by Email" target="_blank" class="btn btn-email" style="padding-right: 18px"><i class="fa fa-envelope fa-fw"></i> Email</a>
-                </div>
-
-            </div>
-
-
+    <div class="parlor-screen" style="background:<% if(data.coverUrl!="" && data.coverUrl!=null ){%>  url(<%= data.coverUrl%>_small) center; background-repeat:no-repeat; background-size: cover; <%} else{%> #5C5858; <%}%>">
+    <div class="gr-mask" style="height: 300px;padding: 200px 0 0 0;;color: #fff">
+        <div class="pull-left col-xs-12" style="font-weight: bolder;font-size: 20px;height: 26px;overflow: hidden;text-overflow: ellipsis;overflow-style: marquee"><%= data.storename %></div>
+        <div class="item-aminities col-xs-12">
+            <% _.each(data.attributeList.split(","),function(amin){%>
+            <% if(amin=="fw") { %><i class="fa fa-female "></i><% } %>
+            <% if(amin=="fm") { %><i class="fa fa-male"></i><% } %>
+            <% if(amin=="ac") { %><i class="fa fa-asterisk"></i><% } %>
+            <% if(amin=="ca") { %><i class="fa fa-credit-card"></i><% } %>
+            <% if(amin=="wi") { %><i class="fa fa-wifi"></i><% } %>
+            <% if(amin=="hs") { %><i class="fa fa-home"></i><% } %>
+            <% if(amin=="xx") { %><i class="fa fa-slack"></i><% } %>
+            <% if(amin=="pa") { %><i class="fa fa-car"></i><% } %>
+            <%}) %>
+        </div>
+        <div class="screen-menus col-xs-12">
+            <div id="rate-rev-top"><i class="fa fa-star-o"></i>Rate & Review</div>
+            <div id="favourite"><i class="fa fa-bookmark"></i>Favourite</div>
+            <div id="checkin"><i class="fa fa-check"></i>Check In</div>
+            <i class="fa fa-star pull-right" style="padding-top: 7px"></i><span class="pull-right" style="font-size: 17px;padding-top: 2px">
+            <%if(data.totalRating != null){%>
+                <%= (data.totalRatingScore/data.totalRating).toFixed(1) %>
+             <%}%>
+            </span>
         </div>
     </div>
+    </div>
 </div>
-<div style="height: 200px;background-color: #fff;margin-top: -40px;border-bottom: 1px solid #dce0e0;margin-bottom: 5px">
-    <div class="" style="opacity:0.5;height: 40px;color: #82888a"></div>
-    <div class="wrapper">
-        <div class="col-md-9" style="color: #82888a;font-size: 20px;margin-top: 12px;height: 150px">
-            <div class="col-md-12" style="font-weight: 100">
-                <div class="col-md-12" style="padding: 0"><%= data.address %> <span id="gomap" style="font-size: 10px;margin-left: 8px;color: crimson"><span class="glyphicon glyphicon-map-marker" style="font-size: 15px"></span> View on map </div>
-
+<div style="height: 135px;background-color: #fff;padding-top: 10px;border-bottom: 1px solid #dce0e0">
+            <div class="col-xs-12" style="font-size: 12px"><%= data.address %> <span id="gomap" style="font-size: 10px;margin-left: 8px;color: crimson">
+                <span class="glyphicon glyphicon-map-marker" style="font-size: 15px"></span> View on map
             </div>
-            <div class="col-md-12" style="margin-top: 10px;font-size: 15px;color: #000"><i class="fa fa-phone"></i> &nbsp;<%= data.phone %></div>
-            <div class="col-md-12" style="padding: 0">
-                <div class="col-md-4">
+
+            <div class="col-xs-12" style="padding: 0">
+                <div class="col-xs-4">
                     <% var date = new Date()
                     var notification = '';
                     switch(date.getDay()){
@@ -473,108 +434,102 @@
                     }
                     notification = notifications(notification);
                     %>
-                    <button type="submit" id="timing" class="btn btn-large btn-block btn-primary" title="Book before store closes" style="background-image: none;font-weight: bolder;margin-top: 38px;width:292px"><span><%=notification%></span></button>
+                    <div title="Book before store closes" style="background-image: none;font-weight: bolder;margin-top: 10px;width:292px"><span><%=notification%></span></div>
                 </div>
             </div>
-        </div>
-
-        <!--<div class="col-md-6"></div>-->
-        <div class="col-md-3" style="min-height: 150px;padding: 0;">
-            <div class="col-md-12" style="padding:0;height: 40px;font-size: 20px;color: #fff;text-align: center;opacity: 0.7;background-color: #000;padding-top: 3px;margin-top: -40px;border: 1px solid #000">Booking Cart</div>
-            <div class="col-md-12" style="min-height: 159px;font-size:15px;padding: 7px 10px 7px 10px;border: 1px solid #dce0e0;color: #82888a">
-                <div class="col-md-10">Selected services</div>
-                <div class="col-md-2" style="text-align: center">0</div>
-                <div class="col-md-12" style="margin-top: 10px">
-                    <!--<input data-provide="datepicker" class="datepicker">-->
+            <div class="col-xs-12" style="text-align: center">
+                <div class="col-xs-6 dropdown">
+                    <button type="submit" class="btn default-btn dropdown-toggle" data-toggle="dropdown" title="Tap to call" style="background-image: none;font-weight: bolder;margin-top:15px;padding: 8px 25px 8px 25px;"><span> Tap to Call</span></button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1" style="min-width: 100px;min-height: 50px;left: 42%">
+                        <% _.each(data.phone.split(","),function(phone){%>
+                        <li role="presentation"><a href="tel:<%=phone%>"><%=phone%></a></li>
+                        <%})%>
+                    </ul>
                 </div>
-                <button type="submit" class="btn btn-large btn-block btn-primary" style="background-image: none;margin-top: 100px;font-weight: bolder;font-size: 16px"><span>Request to Book</span></button>
+                <div class="col-xs-6">
+                    <button class="btn default-btn" id="tabtobook" style="background-image: none;font-weight: bolder;margin-top:15px;padding: 8px 25px 8px 25px;"><span> Tap to Book</span></button>
+                </div>
             </div>
-
-        </div>
-    </div>
 </div>
-<div class="wrapper" style="margin-top: 5px;color: #565a5c;font-size: 14px">
-    <div class="col-md-9">
-        <div class="col-md-11">
-            <div style="font-size: 17px;margin-top: 30px;font-weight: bold">About this listing</div>
-            <div style="margin-top: 15px">A unique holiday experience in the tranquil seaside community of Trinity Beach. Only steps from beautiful beaches and pool at your front door.</div>
+<div class="col-xs-12" style="margin-top: 5px;color: #565a5c;font-size: 14px">
+        <center>
+        <div class="screen-menu-checkin shareicons" style="margin: 10px 0 0 5px;padding: 0 10px 0 8px;display: inline-block">
+            <a class="shareit wa" href="whatsapp://send?text=Hey! Check this out. You will just love booking your next makeover with <%=data.storename%> @Lookplex https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>/index.html Book now!" data-action="share/whatsapp/share" style="padding: 3px 8px"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+            <a class="shareit fb" href="https://www.facebook.com/sharer/sharer.php?u=https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>/index.html" title="Share on Facebook"
+               target="_blank" class="btn btn-facebook" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-facebook fa-fw"></i></a>
+            <a class="shareit" href="https://twitter.com/?status=You will just love this. <%=data.storename%> @Lookplex https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>/index.html"
+               title="Share on Twitter" target="_blank" class="btn btn-twitter" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-twitter fa-fw"></i></a>
+            <a class="shareit gpl" href="https://plus.google.com/share?url=https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>/index.html" title="Share on Google+"
+               target="_blank" class="btn btn-googleplus" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-google-plus fa-fw"></i></a>
+            <a class="shareit pnt" href="https://pinterest.com/pin/create/button/?url=https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>&description=You will just love this. Check out <%=data.storename%> on Lookplex&media=<%=data.coverUrl%>" title="Share on Pinterest"
+               target="_blank" class="btn btn-googleplus" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-pinterest-p fa-fw"></i></a>
+            <a class="shareit" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://lookplex.com/stores/<%=data.storename.split(' ').join('_')%>-<%=data.id%>-<%=data.guid%>/index.html&amp;title=Check out this awesome listing at Lookplex: <%=data.storename%>." title="Share on LinkedIn"
+               target="_blank" class="btn btn-linkedin" onclick="return !window.open(this.href, 'Google', 'width=500,height=500')"><i class="fa fa-linkedin fa-fw"></i></a>
+            <a class="shareit" style="background-color: transparent;border: none"></a>
         </div>
-    </div>
-    <div class="col-md-9" style="margin-top: 20px">
-        <div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Establishment Type</div>
-            <div class="col-md-8" style="padding: 0"><%= rcp(data.categoryList)%></div>
-        </div>
-        <div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Services Offered</div>
-            <div class="col-md-8" style="padding: 0">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a id="salonia" href="#saloni">Salon</a></li>
-                    <li><a id="pba" href="#pb">Party & Bridal Makeup</a></li>
-                    <li><a id="naa" href="#na">Nail Art</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div id="saloni" class="tab-pane fade in active">
-                        <div style="max-height: 30px">Loading...<img class="pull-right" height="20px" width="20px" src="img/loading.gif"></div>
-                    </div>
-                    <div id="pb" class="tab-pane fade">
-                        <div style="max-height: 30px">Loading...<img class="pull-right" height="20px" width="20px" src="img/loading.gif"></div>
-                    </div>
-                    <div id="na" class="tab-pane fade">
-                        <div style="max-height: 30px">Loading...<img class="pull-right" height="20px" width="20px" src="img/loading.gif"></div>
-                    </div>
-                </div>
+        </center>
+        <div style="font-size: 15px;font-weight: bold;display: inline-block">About this listing</div>
+        <div class="justify" style="margin: 15px 0 15px 0;"><%=data.description%></div>
+        <%if(data.storeOffer != null && data.storeOffer != ""){%>
 
+        <div class="col-xs-12" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+        <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0"><span style="color: green;background-color: #ffff00;padding: 5px 7px;border-radius: 3px">Current Offers</span></div>
+        <%var index=1%>
+        <% _.each(data.storeOffer,function(offers){%>
+        <div class="col-xs-12 justify" style="margin-bottom: 15px"><b>Offer&nbsp;<%=index%>&nbsp;&#58;</b>&nbsp;<%= offers.offer%></div>
+        <% index++; })%>
+            <div class="col-xs-4" style="margin-bottom: 10px;margin-left: 60%">
+                <button class="btn default-btn" id="tabtobook" style="background-image: none;font-weight: bolder;margin-top:15px;padding: 8px 25px;"><span>Book Now</span></button>
             </div>
+        <%}%>
+        <div class="col-xs-12" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Establishment Type</div>
+            <div class="col-xs-12"><%= rcp(data.categoryList)%></div>
         </div>
-        <div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Amenities</div>
-            <div class="col-md-8" style="padding: 0">
-                <% var amin = data.attributeList; %>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="min-width: 100px"><% if(amin.indexOf("fm")>-1 && amin.indexOf("fw")>-1 ) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px;color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Unisex"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="Unisex"></i> <% } %>Unisex</span> </div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("ac")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Air Contioner"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="ac"></i> <% } %>Air - Conditioned</span> </div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("pa")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color:#4fc31c" data-toggle="tooltip" data-placement="left" title="Car Parking"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="parking"></i> <% } %>Parking Available</span> </div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("wi")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Wifi"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="wifi"></i> <% } %>Wi-fi Enabled</span> </div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("ca")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Credit/Debit Card"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="cards"></i> <% } %>Accepts Credit/Debit Cards</span> </div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="min-width: 100px"><% if(amin.indexOf("xx")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Pets Allowed"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d;" data-toggle="tooltip" data-placement="left" title="pets"></i> <% } %>Pets Allowed</span> </div>
-
+        <!--<div class="col-xs-12" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Services Offered</div>
+            <div class="col-xs-12">
+                    Coming Soon.
             </div>
-        </div>
-        <div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Opening Hours</div>
-            <div class="col-md-8" style="padding: 0">
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Monday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.mondayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Tuesday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.tuesdayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Wednesday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.wednesdayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Thursday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.thursdayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Friday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.fridayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Saturday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.saturdayTiming) %></span></div>
-                <div class="col-md-6" style="padding: 0"><span class="opening-day" style="width:90px;color: #000;font-weight: bolder">Sunday</span>  <span class="opening-day" style="min-width: 100px"><%= rt(data.sundayTiming) %></span></div>
-            </div>
-        </div>
-        <div class="col-md-11" id="rate-card-pan" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Rate Cards</div>
-            <div class="col-md-8" style="padding: 0">
-                <div class="col-md-12 rate-card" id="rate-card" style="padding: 0"></div>
-            </div>
-        </div>
-        <div class="col-md-11" id="store-photo-pan" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Store Photos</div>
-            <div class="col-md-8" style="padding: 0">
-                <div class="col-md-12 rate-card" id="store-photo" style="padding: 0"></div>
-            </div>
-        </div>
-        <!--<div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-
         </div>-->
-    </div>
-</div>
-<div class="col-md-12" style="min-height: 460px;width: 100%;background-color: #fff;margin-top: 35px;margin-bottom:25px;border: 1px solid #dce0e0;color: #565a5c;padding: 10px 0 50px 0">
-    <div class="wrapper">
-        <div class="col-md-12 rate-card" id="store-reviews">
+        <div class="col-xs-12" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Amenities</div>
+            <div class="col-xs-12">
+                <% var amin = data.attributeList; %>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day" style="min-width: 100px"><% if(amin.indexOf("fm")>-1 && amin.indexOf("fw")>-1 ) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px;color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Unisex"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="Unisex"></i> <% } %>Unisex</span> </div>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("ac")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Air Contioner"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="ac"></i> <% } %>Air - Conditioned</span> </div>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("pa")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Car Parking"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="parking"></i> <% } %>Parking Available</span> </div>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("wi")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Wifi"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="wifi"></i> <% } %>Wi-fi Enabled</span> </div>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day"><% if(amin.indexOf("ca")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Credit/Debit Card"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="cards"></i> <% } %>Accepts Credit/Debit Cards</span> </div>
+                <div class="col-xs-6" style="padding: 0"><span class="opening-day" style="min-width: 100px"><% if(amin.indexOf("hs")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Home Service"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d" data-toggle="tooltip" data-placement="left" title="Home Service"></i> <% } %>Doorstep Services</span> </div>
+                <!--<div class="col-xs-6" style="padding: 0"><span class="opening-day" style="min-width: 100px"><% if(amin.indexOf("xx")>-1) { %><i class="fa fa-check-circle fa-lg" style="padding-right: 4px; color: #4fc31c" data-toggle="tooltip" data-placement="left" title="Pets Allowed"></i><% }else{ %><i class="fa fa-times-circle fa-lg" style="padding-right: 4px; color: #cb202d;" data-toggle="tooltip" data-placement="left" title="pets"></i> <% } %>Pets Allowed</span> </div>-->
 
+            </div>
         </div>
-        <div class="col-md-12" style="text-align: center;margin-top: 30px">
+        <div class="col-xs-12" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Opening Hours</div>
+            <div class="col-xs-12">
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Monday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.mondayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Tuesday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.tuesdayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Wednesday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.wednesdayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Thursday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.thursdayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Friday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.fridayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Saturday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.saturdayTiming) %></span></div>
+                <div class="col-xs-12" style="padding: 0"><span class="col-xs-5" style="width:90px;color: #000;font-weight: bolder">Sunday</span>  <span class="col-xs-7" style="min-width: 100px"><%= rt(data.sundayTiming) %></span></div>
+            </div>
+        </div>
+        <div class="col-xs-12" id="rate-card-pan" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Rate Cards</div>
+            <div class="col-xs-12 rate-card" id="rate-card" style="padding: 0"></div>
+        </div>
+        <div class="col-xs-12" id="store-photo-pan" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
+            <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Store Photos</div>
+            <div class="col-xs-12 rate-card" id="store-photo" style="padding: 0"></div>
+        </div>
+</div>
+<div class="col-xs-12" style="min-height: 260px;width: 110%;background-color: #fff;margin: 25px -15px 5px -15px;margin-bottom:20px;border: 1px solid #dce0e0;color: #565a5c;padding: 10px 0 50px 0;overflow-x: hidden">
+        <div class="col-xs-12 rate-card" id="store-reviews"></div>
+        <div class="col-xs-12" style="text-align: center;margin-top: 30px">
             <h4 style="font-weight: bolder;color: #565a5c;margin: 0">
                 <div id="rateus" class="rating">
                     <span id="star5" class="star" data-value="5" data-toggle="tooltip" data-placement="bottom" title="Awesome"></span>
@@ -585,43 +540,276 @@
                 </div>
             </h4>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-6" style="padding: 0;color: #82888a">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10" style="padding: 0;color: #82888a;text-align: center">
             <div class="user-comment form-group" style="margin-bottom: 2px;padding-bottom: 3px;padding: 0">
                 <h5 style="color: #000">Write Review</h5>
-                <textarea id="comment" class="form-control" rows="5" maxlength="300" placeholder="Minimum 100 and maximum 300 characters are allowed"></textarea>
+                <textarea id="comment" class="form-control" rows="5" maxlength="300" placeholder="Please Review in 100 to 300 characters"></textarea>
             </div>
             <div id="reviewerror"></div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4" style="padding-left: 30px;margin-top: 10px"><button class="btn btn-block btn-primary" id="publish" style="background-image: none;font-weight: bolder">Publish</button></div>
-            <div class="col-md-4 tips" style="font-size: 11px">
-                <a class="tooltiprev" data-placement="bottom" data-toggle="tooltip" title="Writing great reviews may help others discover the places that are just apt for them. People will pay attention when you write thoughtful reviews.Keep them readable and choose the right length a paragraph is great. Your opinion matters, so go ahead and add in your thoughts!
-                                                     Be specific and relevant to the place you're reviewing and describe what other visitors are likely to experience.Be authentic and describe why you liked or disliked the place.Include aspects like the ambience, service quality, value for money, credibility of the vendor, etc. to add value to your opinions.">Tip for writing great review
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
+            <div class="col-xs-12" style="padding-left: 30px;margin-top: 10px;text-align: center"><button class="btn default-btn" id="publish" style="background-image: none;font-weight: bolder;padding: 7px 15px 7px 15px">Publish</button></div>
 
+        </div>
+        <div class="col-xs-1"></div>
 </div>
-<div class="wrapper" style="margin-top: 5px;color: #565a5c;font-size: 14px">
-    <div class="col-md-9" style="margin-top: 20px">
-        <div class="col-md-11" style="padding: 15px 0 15px 0;border-top: 0.5px solid #dce0e0">
-            <div class="col-md-4" style="color: #82888a">Trust</div>
-            <div class="col-md-8" style="padding: 0">
-                <div class="col-md-12 rate-card" id="trust" style="padding: 0"></div>
+<div class="col-xs-12">
+    <div class="col-xs-12" style="color: #82888a;padding: 0 0 15px 0">Trust</div>
+    <div class="col-xs-12">
+        <div class="rate-card" id="trust" style="padding: 0">
+            <div style="padding: 0">
+                <div class="col-xs-2" style="padding: 0 3px 0 3px"><center style="font-size: 8px"><div class="btn" style="color: #fff;background: linear-gradient(135deg, #ffc333 55%, #ffb400 55%, #ffb400 100%)"><%if(data.totalRating!=null){%> <%=data.totalRating%> <%}else{%>0<%}%></div> Ratings</center></div>
+                <div class="col-xs-3"></div>
+                <div class="col-xs-2"  style="padding: 0"><center style="font-size: 8px"><div class="btn" style="color: #fff;background: linear-gradient(135deg, #ff8585 55%, #ff2323 55%, #ff1010 100%)"><%if(data.totalReview!=null){%> <%=data.totalReview%> <%}else{%>0<%}%></div> Reviews</center></div>
+                <div class="col-xs-3"></div>
+                <div class="col-xs-2"  style="padding: 0">
+                    <center style="font-size: 8px">
+                        <div class="btn" style="color: #fff;background: linear-gradient(135deg, #3333ff 55%, #0000ff 55%, #003eff 100%)"><%if(data.trust!=null){%> <%=data.trust%> <%}else{%>0<%}%></div>Favourites
+                    </center>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="wrapper" style="margin-top: 50px">
-    <div class="col-md-12">
-        <div class="item-location-map" id="googleMap" style="width: 100%;height: 550px"></div>
+<div class="col-xs-12" style="margin-top: 30px">
+    <div class="col-xs-12">
+        <div class="item-location-map" id="googleMap" style="width: 100%;height: 450px"></div>
     </div>
 </div>
 </script>
+<script type="text/template" id="pp-ratecards">
+    <div style="padding: 0">
+        <%if(ratecards==null || ratecards.length==0){%>
+        <div class="noresultmsg"> Sorry we don't have rate cards for this store at this moment and we are working to get it soon for you :)</div>
+        <%$('#rate-card-pan').addClass('hidden')%>
+        <%}else{%>
+        <div id="ratecards">
+            <%i=0%>
+            <% _.each(ratecards, function(ratecard){ %>
+            <%if(i<=1){%>
+            <a href="https://pt.lookplex.com/<%=ratecard.photoUrl%>_medium" title="Rate Cards" data-gallery="ratecard">
+                <img class="thumbnail-pad" style="height: 135px;width: 161px" src="https://pt.lookplex.com/<%=ratecard.photoUrl%>_medium" alt="Rate Cards">
+            </a>
+            <%i++;%>
+            <%}else if(i<=5){%>
+            <%if(i==2){%>
+            <br>
+            <%}%>
+            <a href="https://pt.lookplex.com/<%=ratecard.photoUrl%>_medium" title="Rate Cards" data-gallery="ratecard">
+                <img class="thumbnail-pad" style="width:79px" src="https://pt.lookplex.com/<%=ratecard.photoUrl%>_small" alt="Rate Cards">
+            </a>
+            <%i++;%>
+            <%}else if(i>5){%>
+            <a href="https://pt.lookplex.com/<%=ratecard.photoUrl%>_medium" title="Rate Cards" data-gallery="ratecard">
+                <img class="thumbnail-pad hidden" src="https://pt.lookplex.com/<%=ratecard.photoUrl%>_small" alt="Rate Cards">
+            </a>
+            <%i++;%>
+            <%}})}%>
+        </div>
+    </div>
+</script>
 
-<script src="js/lookplexBackbone.js"></script>
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script type="text/template" id="pp-photos">
+    <div style="padding: 0">
+        <%if(storephotos==null || storephotos.length==0){%>
+        <div class="noresultmsg"> Sorry we don't have store photos for this store at this moment and we are working to get it soon for you :)</div>
+        <%$('#store-photo-pan').addClass('hidden')%>
+        <%}else{%>
+        <div id="storephotos">
+            <%i=0%>
+            <% _.each(storephotos, function(storephoto){ %>
+            <%if(i<=1){%>
+            <a href="https://pt.lookplex.com/<%=storephoto.photoUrl%>_medium" title="Store Photos" data-gallery="storephoto" style="font-size: 10px">
+                <img class="thumbnail-pad" style="height: 135px;width: 162px" src="https://pt.lookplex.com/<%=storephoto.photoUrl%>_medium" alt="Store Photos">
+            </a>
+            <%i++;%>
+            <%}else if(i<=5){%>
+            <%if(i==2){%>
+            <br>
+            <%}%>
+            <a href="https://pt.lookplex.com/<%=storephoto.photoUrl%>_medium" title="Store Photos" data-gallery="storephoto" style="font-size: 10px">
+                <img class="thumbnail-pad" src="https://pt.lookplex.com/<%=storephoto.photoUrl%>_small" alt="Store Photos">
+            </a>
+            <%i++;%>
+            <%}else if(i>5){%>
+            <a href="https://pt.lookplex.com/<%=storephoto.photoUrl%>_medium" title="Store Photos" data-gallery="storephoto" style="font-size: 10px">
+                <img class="thumbnail-pad hidden" src="https://pt.lookplex.com/<%=storephoto.photoUrl%>_small" alt="Store Photos" style="width: ">
+            </a>
+            <%i++;%>
+            <%}})}%>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="pp-reviews">
+    <div class="comment-list col-xs-12" style="margin: 30px 0 0 0;padding-bottom: 5px">
+        <h4 style="font-weight: bolder;color: #565a5c"><%=reviews.activityList.length%>&nbsp; Reviews &nbsp;
+            <div id="stars" class="stars" style="display: inline-block">
+                <i style="color: #ffb400" class="fa fa-star"></i>
+                <i style="color: #ffb400" class="fa fa-star"></i>
+                <i style="color: #ffb400" class="fa fa-star"></i>
+                <i style="color: #ffb400" class="fa fa-star"></i>
+                <i style="color: #ffb400" class="fa fa-star"></i>
+            </div>
+        </h4>
+        <div style="border-bottom: 1px solid #ccc;margin-top: 15px"></div>
+        <div>
+            <!--Dummy data-->
+            <%if(reviews.activityList.length>0){%>
+            <% _.each(reviews.activityList, function(review){ %>
+            <div class="review-item comment" style="overflow-style:move;overflow: hidden;margin-bottom: 20px">
+                <div class="review-item-details col-md-12" style="padding: 0">
+                    <div class="col-xs-12" style="min-height: 100px;min-height: 60px;padding: 0">
+                        <span class="thumbnail-pad" style="background: url('https://s3-us-west-2.amazonaws.com/profilelplex/<%=review.customerPhoto%>') center;background-size: contain;border-radius: 40px;width: 60px;margin-left: 10px"></span>
+                        <span><h5 style="color: #565a5c"><%=review.customerName%></h5></span>
+                    </div>
+                    <div class="col-xs-12" style="min-height: 60px;padding: 0">
+                        <p style="margin-bottom: 5px;color: #565a5c"><strong>Rated <span class="item-rating" style="padding: 2px 7px 2px 7px;margin:2px 4px 0 2px;color: #fff;font-size: 13px"><%=review.rating%></span></strong> <%=review.stringComment%>
+                        </p>
+                        <p style="color: crimson">
+                            <small>Reviewed on <%=review.timeStamp.split(' ')[0]%></small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <%})}else{%>
+
+            <center><p style="margin: 10px;color: #82888a"> This store has not been rated yet, be the first one to rate it!!
+            </p></center>
+            <%}%>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="otpslot">
+    <div class="col-xs-12" style="margin-top: 15px;font-weight: bolder;font-size: 16px;padding: 0">
+        <div class="col-xs-12" style="background-color: #000;border-radius: 3px;padding: 20px 5px">
+            <div class="col-xs-12" style="margin: 20px 0"></div>
+            <div class="col-xs-12" style="border-bottom: 1px solid #808080;padding: 10px;margin-bottom: 10px;text-align: center;font-weight: bolder"><div style="display: inline-block">Booking Slot &nbsp;: &nbsp;</div><div style="display: inline-block" id="showtime">&nbsp;01-04-2016 &nbsp;07:00 AM</div></div>
+            <div class="col-xs-4" style="padding: 1px">
+                <div class="form-group" style="text-align: center">
+                    <p style="color: #808080">Month
+                        <select class="form-control time" name="month" id="month" style="font-weight: bolder">
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">Aug</option>
+                            <option value="09">Sep</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-4" style="padding: 1px">
+                <div class="form-group" style="text-align: center">
+                    <p style="color: #808080">Date
+                        <select class="form-control time" name="date" id="date" style="font-weight: bolder">
+                            <%for(var i=1;i<31;i++){%>
+                            <option value="<%=i%>"><%=i%></option>
+                            <%}%>
+                            <option id="31" class="hidden" value="31">31</option>
+
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-4" style="padding: 1px">
+                <div class="form-group" style="text-align: center">
+                    <p style="color: #808080">Year
+                        <select class="form-control time" name="year" id="year" style="font-weight: bolder">
+                            <option value="2016">2016</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-2"></div>
+            <div class="col-xs-4" style="padding: 1px">
+                <div class="form-group" style="text-align: center">
+                    <p style="color: #808080">Time
+                        <select class="form-control time" name="time" id="time" style="font-weight: bolder">
+                            <option value="07:00">07:00</option>
+                            <option value="07:30">07:30</option>
+                            <option value="08:00">08:00</option>
+                            <option value="08:30">08:30</option>
+                            <option value="09:00">09:00</option>
+                            <option value="09:30">09:30</option>
+                            <option value="10:00">10:00</option>
+                            <option value="10:30">10:30</option>
+                            <option value="11:00">11:00</option>
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="01:00">01:00</option>
+                            <option value="01:30">01:30</option>
+                            <option value="02:00">02:00</option>
+                            <option value="02:30">02:30</option>
+                            <option value="03:00">03:00</option>
+                            <option value="03:30">03:30</option>
+                            <option value="04:00">04:00</option>
+                            <option value="04:30">04:30</option>
+                            <option value="05:00">05:00</option>
+                            <option value="05:30">05:30</option>
+                            <option value="06:00">06:00</option>
+                            <option value="06:30">06:30</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+            <div class="col-xs-4" style="padding: 1px">
+                <div class="form-group" style="text-align: center">
+                    <p style="color: #808080">Meridiem
+                        <select class="form-control time" name="meridiem" id="meridiem" style="font-weight: bolder">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="otpdetails">
+
+    <!--<div class="col-xs-12" style="margin-top: 25px;font-weight: bolder;font-size: 16px">
+        <div class="col-xs-10">
+            <button type="submit" class="btn default-btn" style="background-image: none;font-weight: bolder;width: 80%">
+                <span>Fill your details</span>
+            </button>
+        </div>
+    </div>-->
+    <div class="col-xs-12" style="margin-top: 25px;font-weight: bolder">
+        <!--<div class="col-xs-8">
+            <p>Name: &nbsp;&nbsp;<input type="text" id="name" style="height: 32px;width: 350px;font-weight: bolder" placeholder="Your full name"></p>
+        </div>-->
+        <div class="col-xs-8">
+            <p>Mobile No: &nbsp;&nbsp;<input type="number" max="10" id="mobile" style="height: 32px" placeholder="10 digit number"></p>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="otpconfirm">
+    <!--<div class="col-xs-4">
+        <button type="submit" class="btn default-btn" style="background-image: none;margin-top: 25px;font-weight: bolder;font-size: 16px">
+            <span>Confirm OTP</span>
+        </button>
+    </div>-->
+    <div class="col-xs-2"><p>OTP: &nbsp;&nbsp;</div>
+    <div class="col-xs-4" style="margin-top: 25px">
+        <input type="text" id="otpp" style="height: 32px" maxlength="6" placeholder="One time password"></p>
+    </div>
+    <div class="col-xs-2"></div>
+    <div class="col-xs-12 errormsg hidden" id="otperror" style="text-align: center;font-weight: bolder;margin-top: 25px">Please provide correct OTP</div>
+    <div class="col-xs-12 successmsg" style="text-align: center;font-weight: bolder;margin-top: 25px">We just sent msg to you, please check your mobile for One Time Password</div>
+</script>
+<script type="text/template" id="successbooking">
+    <div class="col-xs-12" style="margin-top: 25px;text-align: center;font-size: 22px;font-weight: bold;padding: 10px">
+        Thank You for choosing Lookplex!
+        <div class="col-xs-12" style="margin-top: 25px;text-align: left;font-size: 20px;font-weight: bold;padding: 10px">
+            Your Booking Details
+        </div>
+
+        <div class="col-xs-12" style="border: 1px solid #808080;text-align: left;font-size: 16p;padding-top: 10px">
+            <div class="col-xs-4 otptable">Store :</div><div class="col-xs-7 otptable"><%=booking.storename%></div>
+            <div class="col-xs-4 otptable">Address :</div><div class="col-xs-7 otptable"><%=booking.storeaddress%></div>
+            <div class="col-xs-4 otptable">Date & Time :</div><div class="col-xs-7 otptable"><%=booking.date%> &nbsp;-&nbsp;<%=booking.time%></div>
+        </div>
+</script>
+<script src="js/4/lookplexBackbone.js"></script>
 <script src='//maps.googleapis.com/maps/api/js?key=AIzaSyBkRzmfedoJ2knAFsyxdhH5AuW41ljbu6E&sensor=false'></script>
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script src="js/bootstrap-image-gallery.min.js"></script>
 </html>

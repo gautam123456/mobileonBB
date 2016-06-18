@@ -95,6 +95,115 @@ $(document).ready(function(e) {
     });
 
 
+
+    $('#nbooking').click(function(e){
+        value = parseInt($(e.currentTarget).val());
+        switch (value){
+            case 1:
+                $booking.date = $('#date').val() + "/" + $('#month').val() + "/" + $('#year').val();
+                $booking.time = $('#time').val() + " " + $('#meridiem').val();
+                if($booking.date == "" || $booking.time == ""){
+                    $('#otpmsg').removeClass('hidden');
+                }else {
+                    $('#otpmsg').addClass('hidden');
+                    new OTPDetails().render();
+                    $(e.currentTarget).val(parseInt(value)+1);
+                    $('.num'+ (parseInt(value)+1)).removeClass('inactivestep').addClass('activestep');
+                }
+                break;
+            case 2:
+                $booking.number = $('#mobile').val();
+                if($booking.number.length != 10){
+                    $('#otpmsg').removeClass('hidden');
+                }else{
+                    $datas = {platform:$user.platform, token: $user.access_token, storeguid: $qo.storeguid, storeid:$qo.storeID,mobile: $booking.number, offer:"25",datetime:$booking.date + " - " +$booking.time};
+                    $.ajax({
+                        url:$ROOT_URL+"/sendBookingOtp",
+                        type:'POST',
+                        async:false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        data:$datas,
+                        dataType:'text',
+                        success:function(response){
+                            $booking.lkey = response;
+                            $(e.currentTarget).val(parseInt(value)+1);
+                            $('.num'+ (parseInt(value)+1)).removeClass('inactivestep').addClass('activestep');
+                            $('#otpmsg').addClass('hidden');
+                            new OTPConfirm().render();
+                            $('#nbooking').empty().append('<span>Submit</span>');
+                        },
+                        error:function(msg){
+                            $('#otpmsg').text("Something went wrong no OTP generated").removeClass('hidden');
+                        }
+                    });
+                }
+                break;
+            case 3:
+                $booking.otp = $('#otpp').val();
+                if($booking.otp.length != 6){
+                    $('#otperror').removeClass('hidden');
+                }else{
+                    $datas = {platform:$user.platform, token: $user.access_token, storeguid: $qo.storeguid, storeid:$qo.storeID,mobile: $booking.number,otp:$booking.otp,lkey:$booking.lkey};
+                    $.ajax({
+                        url:$ROOT_URL+"/sendBookingAck",
+                        type:'POST',
+                        async:false,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        contentType: 'application/x-www-form-urlencoded',
+                        data:$datas,
+                        dataType:'text',
+                        success:function(response){
+                            if(response.toString().toUpperCase() == "OTPVERIFIED"){
+                                new OTPSuccess({booking:$booking}).render();
+                                $(e.currentTarget).val(parseInt(value)+1);
+                                $('.num'+ (parseInt(value)+1)).removeClass('inactivestep').addClass('activestep');
+                                $('#otperror').addClass('hidden');
+                                $('#otpmsg').removeClass('hidden');
+                                $('#nbooking').empty().append('<span>Close</span>');
+                                $('#cbooking').empty().append('<span>Book again</span>');
+                            }else{
+                                $('#otpmsg').text("Wrong OTP enetered, please provide correct OTP").removeClass('hidden');
+                            }
+
+                       },
+                        error:function(msg){
+                            $('#otpmsg').text("Something went wrong,please provide correct OTP").removeClass('hidden');
+                        }
+                    });
+                }
+                break;
+            default:
+                $("#otp").modal("toggle");
+                $('#cbooking').empty().append('<span>Book again</span>');
+                $(e.currentTarget).val(parseInt(value)+1);
+                $('.num'+ (parseInt(value)+1)).removeClass('inactivestep').addClass('activestep');
+        }
+    });
+
+    $('#cbooking').click(function(e){
+        $('.num1').removeClass('inactivestep').addClass('activestep');
+        $('.num2').removeClass('activestep').addClass('inactivestep');
+        $('.num3').removeClass('activestep').addClass('inactivestep');
+        $('.num4').removeClass('activestep').addClass('inactivestep');
+        $('#nbooking').val(1);
+        $('#nbooking').empty().append('<span>Next</span>');
+        $booking.date = "";
+        $booking.otp = "";
+        $booking.time = "";
+        $booking.number = "";
+        $booking.servicetype = "";
+        $booking.lkey = "";
+        new OTPSlot().render();
+        $('#cbooking').empty().append('<span>Clear</span>');
+        $('#otpmsg').addClass('hidden');
+        $('#pickslot').click();
+    });
+
     function showModal(e){
         if(!$(e).length>0){
             $.get("templates/login-signup-modal.txt",
@@ -295,7 +404,13 @@ $(document).ready(function(e) {
         }
     );
 
-
+    $('#discardSearch').click(function(e){
+        $('#ilocation').val('');
+        $('.location-suggestion').empty();
+        $('#discardSearch').addClass('hidden');
+        $('.categories-list').addClass('hidden');
+        $('#catinput').val('');
+    })
 
     $(".screen-menu-rate").click(function(e) {
         $(".nav-list>h4").eq(3).click();
@@ -345,6 +460,39 @@ $(document).ready(function(e) {
                     $(".location-suggestion").html("<div class=\"list-group-item text-danger\" >No suggesstions found.</div>").slideDown();
                 }
                 $('#wait').addClass("hidden");
+                $('#discardSearch').removeClass('hidden');
+            }
+        }).fail(function(){
+            $(".location-suggestion").html("<div class=\"list-group-item text-danger\" >No suggesstions found.</div>").slideDown();
+            $(".search-bar-spinner").fadeOut();
+            console.log('failed');
+        })
+    }
+
+    function getStoreSuggestion($query_location){
+        $.ajax({
+            type:"POST",
+            url: $ROOT_URL+"/searchStoreLite",
+            cache:false,
+            data:"storehint="+$query_location,
+            dataType:"json",
+            xhrFields: {
+                withCredentials: true
+            },
+            beforeSend: function(){
+                $(".search-bar-spinner").css("display","inline-block");
+            },
+            success:function(data,status,jqXhr){
+                $location_suggestion="";
+                if(data.length>0){$.each(data,function(index,element){
+                    $location_suggestion+="<div class=\"list-group-item store-item\" value=\""+element.id+"-"+element.guid+"\">"+"<i class=\"fa fa-map-marker\" style='margin-right: 5px'></i><span>"+element.storename+"&nbsp;</span><div style='font-size: 9px;margin-left: 11px'>"+element.address+"</div></div>";
+                });
+                    $(".location-suggestion").html($location_suggestion).slideDown();
+                }else{
+                    $(".location-suggestion").html("<div class=\"list-group-item text-danger\" >No suggesstions found.</div>").slideDown();
+                }
+                $('#wait').addClass("hidden");
+                $('#discardSearch').removeClass('hidden');
             }
         }).fail(function(){
             $(".location-suggestion").html("<div class=\"list-group-item text-danger\" >No suggesstions found.</div>").slideDown();
@@ -360,13 +508,19 @@ $(document).ready(function(e) {
         focusin :function(){
             $queryNew=$(".location").val();
             $(this).on("keydown",function(e){
+                $('#discardSearch').removeClass('hidden');
                 $queryNew=$(".location").val();
                 if($suggestionTimeout!=""){clearTimeout($suggestionTimeout);
                 }
                 $suggestionTimeout=setTimeout(function(){
                         if($queryNew!=$queryOld && $queryNew.length>2){
                             $('#wait').removeClass("hidden");
-                            getLocationSuggestion($queryNew);
+                            $('#discardSearch').addClass('hidden');
+                            if($qo.searchBy == 2){
+                                getStoreSuggestion($queryNew);
+                            }else{
+                                getLocationSuggestion($queryNew);
+                            }
                         }
                         else{
                             $(".location-suggestion").fadeOut();
@@ -393,12 +547,43 @@ $(document).ready(function(e) {
     },".location-item");
 
     $(document).on({
+        click : function(e){
+            $("#modal-search").modal("hide");
+            $qo.storeguid = $(e.currentTarget).attr('value').split('-')[1];
+            $qo.storeID = $(e.currentTarget).attr('value').split('-')[0];
+            router.navigate("#/stores/profile/"+$qo.storeID+"-"+$qo.storeguid);
+            $qo.storename = $(e.currentTarget).text();
+            $('.location-suggestion').empty();
+            $('#ilocation').val($qo.storename);
+        }
+    },".store-item");
+    //gautam
+
+    $(document).on({
         click : function(){
             $('.categories-list').removeClass('hidden');
             $('.categories-list').css('display','block');
             console.log("class removed");
         }
     },"#catinput");
+
+    $(document).on({
+        click : function(e){
+            $qo.searchBy = $(e.currentTarget).attr('value');
+            $('.location-suggestion').empty();
+            $('#ilocation').val('');
+            if($qo.searchBy == 2){
+                $('#catinput').addClass('hidden');
+                $('.categories-list').addClass('hidden');
+                $('.location').attr('placeholder','Enter store name or brand');
+            }else{
+                $('#catinput').removeClass('hidden');
+                $('.location').attr('placeholder','Enter area, landmark or colony');
+
+            }
+            $('#discardSearch').addClass('hidden');
+        }
+    },"input[name=searchtype]");
 
     $(document).on({
         click : function(){
@@ -426,10 +611,16 @@ $(document).ready(function(e) {
             if(($qo.blockname != null && $qo.blockname !="") && ($qo.catid != null || $qo.catid != ""))
             {
                 $("#modal-search").modal("hide");
-                router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-1", {trigger: true});
+                if($qo.searchBy == 2){
+                    router.navigate("#/stores/profile/" + $qo.storeID + "-" + $qo.storeguid);
+                }else{
+                    router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-1", {trigger: true});
+                }
+
             }
         }
     },".cat");
+
 
 
     /******************

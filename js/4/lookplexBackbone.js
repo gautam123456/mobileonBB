@@ -6,7 +6,17 @@ $fixed = false;
 $rate=0;
 var timeoutId = false;
 
-
+$booking={
+    servicetype:"",
+    date:"",
+    time:"",
+    name:"",
+    number:"",
+    otp:"",
+    lkey:"",
+    storename:"",
+    storeaddress:""
+};
 
 function resetGlobalVariables(){
     $qo={
@@ -34,7 +44,8 @@ function resetGlobalVariables(){
         reviews:"",
         pagesize:10,
         numberofpages:"",
-        pageid:1
+        pageid:1,
+        searchBy:1
     };
 };
 resetGlobalVariables();
@@ -106,51 +117,6 @@ $(document).on("click",".search-bar>div>div .list-group-item",function(e){
         console.log("error");
     }
 });
-//All common AJAX calls here......
-function renderstoreItemView(askedpage){
-    var stores=new StoreCollection({isFiltered:$qo.isFiltered});
-    stores.fetch({
-        data:$datas,
-        contentType: 'application/x-www-form-urlencoded',
-        type:'POST',
-        beforeSend: function(){showOverlay(true);},
-        dataType:'json',
-        xhrFields: {
-            withCredentials: true
-        },
-        parse:function(response, options){
-        },
-        success:function(response){
-            var stores = response ;
-            if(stores.get('count')==null || stores.get('count')<=0){
-                $(".overlay").fadeOut();
-                $('.search-result').html("<div class='col-md-12 noresult'><center><h3><i class=\"fa fa-exclamation-triangle\"></i> No Result Found.</h3></center></div>");
-            }else{
-                $qo.numberofpages=Math.ceil(stores.get('count')/$qo.pagesize);
-                var storeItemView=new StoreItemView({stores: stores,qo:$qo});
-                storeItemView.render();
-                $(".overlay").fadeOut();
-                $(".page").removeClass('activepage');
-                $('#page'+askedpage).addClass('activepage');
-                if(askedpage<=1){
-                    $('#prev').addClass('hidden');
-                    $('#next').removeClass('hidden');
-                }else if(askedpage>=$qo.numberofpages){
-                    $('#next').addClass('hidden');
-                    $('#prev').removeClass('hidden');
-                }else{
-                    $('#next').removeClass('hidden');
-                    $('#prev').removeClass('hidden');
-                }
-            }
-
-        },
-        error:function(){
-            $(".overlay").fadeOut();
-            $('.search-result').html("<div class='col-md-12 noresult'><center><h3><i class=\"fa fa-exclamation-triangle\"></i> No Result Found.</h3></center></div>");
-        }
-    });
-}
 
 function getRateCard($datas){
     var data;
@@ -507,45 +473,7 @@ function getCustomerInfo(e,data){
     });
     return info;
 }
-var HomeView=Backbone.View.extend({
-    el:'.full-container',/*
-    initialize:function(){
-        _.bindAll(this, 'detect_scroll');
-        $(window).scroll(this.detect_scroll);
-    },*/
-    events:{
-        'click #moreservice':'toggleservices',
-        'click #morecity':'togglecities'
-    },
-    render:function(){
-        var temp=_.template($("#home").html());
-        var html=temp();
-        this.$el.html(html).trigger("create");
-        $('#tohide').slideToggle();
-        $('#tohidecity').slideToggle();
-    },
-    toggleservices:function(e){
-        $('#tohide').slideToggle(1000,function(){
-            if($(e.currentTarget).text().toString()=="See Less"){
-                $('html, body').animate({
-                    scrollTop:$('#eyecandy').offset().top - 90
-                }, 0);
-                $(e.currentTarget).text('See More');
-            }else{
-                $(e.currentTarget).text('See Less');
-            }
-        });
-    },
-    togglecities:function(e){
-        $('#tohidecity').slideToggle(1000,function(){
-            if($(e.currentTarget).text().toString()=="See Less"){
-                $(e.currentTarget).text('See More');
-            }else{
-                $(e.currentTarget).text('See Less');
-            }
-        });
-    }
-});
+
 
 var HeaderView=Backbone.View.extend({
     el:'.header',
@@ -554,7 +482,8 @@ var HeaderView=Backbone.View.extend({
         var html=temp();
         this.$el.html(html).trigger("create");
         if($user.displayName!=null){
-            new UserMenueView().render();
+            new UserMenueView({user:$user}).render();
+            $('#login0').addClass('hidden');
         }
     }
 });
@@ -565,7 +494,7 @@ var UserMenueView=Backbone.View.extend({
     },
     render:function(){
         var temp=_.template($("#usermenue").html());
-        var html=temp();
+        var html=temp({user:$user});
         this.$el.html(html).trigger("create");
     },
     logout:function(e){
@@ -575,6 +504,7 @@ var UserMenueView=Backbone.View.extend({
         $user.image = null;
         $user.platform = null;
         $('#userinfo').empty();
+        $('#login0').removeClass('hidden');
     }
 });
 var FooterView=Backbone.View.extend({
@@ -585,159 +515,8 @@ var FooterView=Backbone.View.extend({
         this.$el.html(html).trigger("create");
     }
 });
-var SponsoredCityView=Backbone.View.extend({
-    el:'.full-container',
-    events:{
-        'click .f-menu':'servicechange'
-    },
-    initialize:function(options){ this.options=options;},
-    render:function(){
-        var temp=_.template($("#citytemplate").html());
-        var html=temp({qo:$qo});
-        this.$el.html(html).trigger("create");
-    },
-    servicechange:function(e){
-        router.navigate("#/stores/cities/"+$qo.cityname+"-"+$qo.cityguid+"-"+$qo.cityid+"-"+$(e.currentTarget).val());
-    }
-});
-var SponsoredServiceView=Backbone.View.extend({
-    el:'.full-container',
-    events:{
-        'click .f-menu':'citychange'
-    },
-    initialize:function(options){ this.options=options;},
-    render:function(){
-        var temp=_.template($("#servicetemplate").html());
-        var html=temp({qo:$qo});
-        this.$el.html(html).trigger("create");
-    },
-    citychange:function(e){
-        router.navigate("#/stores/services/"+$(e.currentTarget).val()+"-"+$qo.catname+"-"+$qo.catid);
-    }
-});
 
-var SearchView=Backbone.View.extend({
-    el:'.full-container',//page-header
-    events:{
-        'click .f-menu':'servicechange',
-        'click #next':'next',
-        'click #previ':'prev'
-    },
-    render:function(){
-        var temp=_.template($("#searchtemplate").html());
-        var html=temp({qo:$qo});
-        this.$el.html(html).trigger("create");
-        $('#filter2').removeClass('hidden');
-        renderstoreItemView($qo.pageid);
-        $.ajax({
-            url:$ROOT_URL+"/getbrandaminityList",
-            type:'POST',
-            contentType: 'application/x-www-form-urlencoded',
-            data:{catid: $qo.catid},
-            dataType:'json',
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            parse:function(response, options){
-            },
-            success:function(data){
-                $(".sub-filter:eq(1)").empty();
-                $.each(data.brandlist,function(index,item){
-                    $(".sub-filter:eq(1)").append("<label class='tocontinue'><input class=\"fi-menu brandname\" type=\"checkbox\" multiple name=\"brand[]\" value=\""+item.id+"\">"+item.brandName+"</label>");
-                });
-                showFilters();
-            },
-            error:function(msg){
-                console.log(JSON.stringify(msg));
-            }
-
-        });
-        $('.weekdays').slideUp();
-        return this;
-    },
-    servicechange:function(e){
-        $qo.aminities = [];
-        $qo.brandname = null;
-        $qo.gender = null;
-        $qo.morefilters = null;
-        $('.fi-menu').prop('checked', false);
-        router.navigate("#/stores/"+$qo.blockname+"-"+$qo.blockid+"-"+$qo.blockguid+"-"+$(e.currentTarget).val() + "-" + 1);
-    },
-    brandupdate:function(e){
-        $qo.aminities = [];
-        var uri = $("input[name=etype0]:checked").val();
-        router.navigate("#/stores/"+$qo.blockname+"-"+$qo.blockid+"-"+$qo.blockguid+"-"+uri);
-    },
-    next:function(e){
-        $qo.isFiltered=1;
-        router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-" + (parseInt($qo.pageid) + 1));
-    },
-    prev:function(e){
-        $qo.isFiltered=1;
-        router.navigate("#/stores/" + $qo.blockname + "-" + $qo.blockid + "-" + $qo.blockguid + "-" + $qo.catname + "-" + $qo.catid + "-" + (parseInt($qo.pageid) - 1));
-    }
-
-});
-
-var StoreItemView = Backbone.View.extend({
-    el:'.search-result',
-    initialize:function(options){
-        this.options=options;
-    },
-    events:{
-        'click #ratecardsdrop':'ratecarddrop',
-        'click #photosdrop':'photodrop',
-        'click #reviewsdrop':'reviewdrop',
-        'click #trustsdrop':'trustdrop'
-    },
-    render:function(){
-            var temp = _.template($('#result-item').html());
-            var html = temp({stores: this.options.stores, qo: this.options.qo});
-            this.$el.html(html).trigger("create");
-            /*$('[data-toggle="popover"]').popover();*/
-            $('[data-toggle="tooltip"]').tooltip();
-            /*$('[data-toggle="dropdown"]').dropdown();*/
-    },
-    ratecarddrop:function(e){
-        var storedetail = this.getKeys(e).attr('data-value').split('-');
-        $qo.storeID = storedetail[0];
-        $qo.storeguid = storedetail[1];
-        router.navigate("#/stores/profile/" + $qo.storeID + "-" + $qo.storeguid);
-        $('html, body').animate({scrollTop:700},1000);
-    },
-    photodrop:function(e){
-        var storedetail = this.getKeys(e).attr('data-value').split('-');
-        $qo.storeID = storedetail[0];
-        $qo.storeguid = storedetail[1];
-        router.navigate("#/stores/profile/" + $qo.storeID + "-" + $qo.storeguid);
-        $('html, body').animate({scrollTop:900},1000);
-
-    },
-    reviewdrop:function(e){
-        var storedetail = this.getKeys(e).attr('data-value').split('-');
-        $qo.storeID = storedetail[0];
-        $qo.storeguid = storedetail[1];
-        router.navigate("#/stores/profile/" + $qo.storeID + "-" + $qo.storeguid);
-        $('html, body').animate({scrollTop:1300},1000);
-
-    },
-    trustdrop:function(e){
-        var storedetail = this.getKeys(e).attr('data-value').split('-');
-        $qo.storeID = storedetail[0];
-        $qo.storeguid = storedetail[1];
-        router.navigate("#/stores/profile/" + $qo.storeID + "-" + $qo.storeguid);
-        $('html, body').animate({scrollTop:1600},1000);
-
-    },
-    getKeys:function(e){
-        return	$(e.currentTarget).parent();
-    }
-});
-
-
-
-var StoreProfile=Backbone.View.extend({
+var StoreProfile = Backbone.View.extend({
     el:'.full-container',//page-header
     elphotos:'.rate-card',
     initialize:function(options){this.options=options;},
@@ -747,7 +526,8 @@ var StoreProfile=Backbone.View.extend({
         'click #favourite':'favourite',
         'click #checkin':'checkin',
         'click #rateus>span':'rateus',
-        'click #publish':'publishReview'
+        'click #publish':'publishReview',
+        'click #tabtobook':'tabtobook'
     },
     render:function(){
         var that=this;
@@ -768,6 +548,7 @@ var StoreProfile=Backbone.View.extend({
         $('[data-toggle="tooltip"]').tooltip();
 
         $('html, body').animate({scrollTop:0},700);
+        new OTPSlot().render();
 
     },
     publishReview:function(e){
@@ -843,6 +624,13 @@ var StoreProfile=Backbone.View.extend({
             $('#modallogin').modal("show");
         }
 
+    },
+    tabtobook:function(){
+        if($user.displayName == null){
+            $("#modallogin").modal("show");
+        } else{
+            $("#otp").modal("show");
+        }
     }
 });
 
@@ -924,6 +712,79 @@ var ModalView=Backbone.View.extend({
     }
 });
 
+var OTPSlot = Backbone.View.extend({
+    el:'#otpview',
+    events:{
+        "change #month": "monthselected",
+        "change #date": "dateselected",
+        "change #year": "yearselected",
+        "change #time": "timeselected",
+        "change #meridiem": "meridiemselected"
+
+    },
+    render:function(){
+        var temp=_.template($("#otpslot").html());
+        var html=temp();
+        this.$el.html(html).trigger("create");
+    },
+    monthselected:function(){
+        $booking.date = $('#date').val() + "-" + $('#month').val() + "-" + $('#year').val();
+        $booking.time = $('#time').val() + " " + $('#meridiem').val();
+        $('#showtime').text(" "+ $booking.date + "   " + $booking.time);
+        if($('#month').val() == 5 || $('#month').val() == 7){
+            $('#31').removeClass('hidden');
+        }else{
+            $('#31').addClass('hidden');
+        }
+    },
+    dateselected:function() {
+        $booking.date = $('#date').val() + "-" + $('#month').val() + "-" + $('#year').val();
+        $booking.time = $('#time').val() + " " + $('#meridiem').val();
+        $('#showtime').text(" "+ $booking.date + "   " + $booking.time);
+    },
+    yearselected:function() {
+        $booking.date = $('#date').val() + "-" + $('#month').val() + "-" + $('#year').val();
+        $booking.time = $('#time').val() + " " + $('#meridiem').val();
+        $('#showtime').text(" "+ $booking.date + "   " + $booking.time);
+    },
+    timeselected:function() {
+        $booking.date = $('#date').val() + "-" + $('#month').val() + "-" + $('#year').val();
+        $booking.time = $('#time').val() + " " + $('#meridiem').val();
+        $('#showtime').text(" "+ $booking.date + "   " + $booking.time);
+    },
+    meridiemselected:function() {
+        $booking.date = $('#date').val() + "-" + $('#month').val() + "-" + $('#year').val();
+        $booking.time = $('#time').val() + " " + $('#meridiem').val();
+        $('#showtime').text(" "+ $booking.date + "   " + $booking.time);
+    }
+});
+
+var OTPDetails=Backbone.View.extend({
+    el:'#otpview',
+    render:function(){
+        var temp=_.template($("#otpdetails").html());
+        var html=temp();
+        this.$el.html(html).trigger("create");
+    }
+});
+
+var OTPConfirm=Backbone.View.extend({
+    el:'#otpview',
+    render:function(){
+        var temp=_.template($("#otpconfirm").html());
+        var html=temp();
+        this.$el.html(html).trigger("create");
+    }
+});
+var OTPSuccess=Backbone.View.extend({
+    el:'#otpview',
+    render:function(){
+        var temp=_.template($("#successbooking").html());
+        var html=temp({booking:$booking});
+        this.$el.html(html).trigger("create");
+    }
+});
+
 
 //ROUTERS
 var Workspace = Backbone.Router.extend({
@@ -931,31 +792,7 @@ var Workspace = Backbone.Router.extend({
         Backbone.history.start(/*{pushState: true}*/);
     },
     routes:{
-        '': 'home',
-        'stores/:aid-:bid-:bgid-:cid-:did-:pid':'home_stores',
-        'stores/profile/:sid-:guid':'store_profile',
-        'stores/services/:cnm-:cgd-:cid-:snm-:sid':'stores_service_wise',
-        'stores/cities/:cnm-:cgd-:cid-:snm-:sid':'stores_city_wise',
-        'freelisting':'free_listing',
-        'listing':'listing',
-        'about':'about',
-        'carrers':'carreers',
-        'contactus':'contact_us',
-        'advertise':'advertise',
-        'storeadmin':'storeadmin',
-        'privacypolicy':'privacypolicy',
-        'haircare':'haircare',
-        'skincare':'skincare',
-        'fitness':'fitness',
-        'makeup':'makeup',
-        'diet':'diet',
-        'termsofservice':'termsofservice',
-        'profile':'profile',
-        'journey':'journey',
-        'ratings':'ratings',
-        'reviews':'reviews',
-        'bookmarks':'bookmarks',
-        'checkins':'checkins'
+        '':'store_profile'
     },
     home:function(){
         $(".overlay").fadeIn();
@@ -1081,11 +918,17 @@ var Workspace = Backbone.Router.extend({
         new FooterView().render();
         $(".overlay").fadeOut();
     },
-    store_profile:function(sid,guid){
+    store_profile:function(){
         new HeaderView().render();
-        $qo.storeguid = guid;
-        $qo.storeID = sid;
-        $.ajax({
+        var url = window.location.href;
+        $qo.storeguid = (url.split('-')[2]).split('/')[0];
+        $qo.storeID = url.split('-')[1];
+        console.log($qo.storeguid +"------------"+$qo.storeID);
+        if(cm.getCookie("access_token") != "" && cm.getCookie("access_token") != undefined){
+            $data = {guid:$qo.storeguid,storeid:$qo.storeID};
+        }else{
+            $data = {guid:$qo.storeguid,storeid:$qo.storeID};
+        }        $.ajax({
             data:{guid:guid,storeid:sid},
             type:'POST',
             cache : false,
@@ -1121,6 +964,8 @@ var Workspace = Backbone.Router.extend({
                     title:"LookPlex Store"
                 });
                 new FooterView().render();
+                $booking.storename = data.storename;
+                $booking.storeaddress = data.address;
             },
             error: function(msg){
                 $(".overlay").fadeOut();
@@ -1230,7 +1075,4 @@ var Workspace = Backbone.Router.extend({
     }
 
 });
-
 var router=new Workspace();
-
-
